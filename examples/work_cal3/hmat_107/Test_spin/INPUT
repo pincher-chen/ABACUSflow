@@ -1,0 +1,17 @@
+INPUT_PARAMETERS
+# Created by Atomic Simulation Enviroment
+suffix              Test_spin
+pseudo_dir          /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/PotSG15
+orbital_dir         /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/OrbSG15std
+calculation         scf
+ntype               2
+nspin               2
+nbands              25
+symmetry            1
+ecutwfc             60
+scf_thr             1e-06
+scf_nmax            20
+basis_type          lcao
+gamma_only          0
+
+

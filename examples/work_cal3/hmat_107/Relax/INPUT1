@@ -1,0 +1,27 @@
+INPUT_PARAMETERS
+# Created by Atomic Simulation Enviroment
+suffix              Relax
+pseudo_dir          /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/PotSG15
+orbital_dir         /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/OrbSG15std
+calculation         relax
+ntype               2
+nspin               2
+nbands              25
+symmetry            1
+ecutwfc             100
+scf_thr             1e-08
+scf_nmax            10
+out_chg             0
+ks_solver           genelpa
+force_thr_ev        0.01
+stress_thr          0.5
+relax_method        cg
+relax_nmax          10
+basis_type          lcao
+smearing_method     gaussian
+smearing_sigma      0.02
+mixing_type         broyden
+mixing_beta         0.4
+gamma_only          0
+
+

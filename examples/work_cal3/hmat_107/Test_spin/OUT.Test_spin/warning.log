@@ -1,0 +1,91 @@
+ AUTO_SET NBANDS to 25
+ Grid_Technique::init_atoms_on_grid  warning : No atom on this sub-FFT-mesh.
+      Processor           Atom
+              1            288
+              2            289
+              3            316
+              4            290
+              5            290
+              6              0
+              7              0
+              8              0
+              9              0
+             10              0
+             11              0
+             12              0
+             13              0
+             14              0
+             15              0
+             16              0
+                            startmag_type = 1
+                       charge from rho_at = 2.88725
+                         charge should be = 3
+                            startmag_type = 1
+                       charge from rho_at = 5.99905
+                         charge should be = 6
+
+ SETUP ATOMIC RHO FOR SPIN 1
+                 Electron number from rho = 12.5
+
+ SETUP ATOMIC RHO FOR SPIN 2
+                 Electron number from rho = 8.5
+           total electron number from rho = 21
+                                should be = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 21.0000893798487
+                  charge after normalized = 21
+                 charge before normalized = 21.0000000000001
+                  charge after normalized = 21
+                 charge before normalized = 21.0001145209752
+                  charge after normalized = 21
+                 charge before normalized = 20.9999999999999
+                  charge after normalized = 21
+                 charge before normalized = 21.0001297429092
+                  charge after normalized = 20.9999999999999
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 21.0001554835622
+                  charge after normalized = 21
+                 charge before normalized = 21.0000000000001
+                  charge after normalized = 21
+                 charge before normalized = 21.0001553571357
+                  charge after normalized = 21
+                 charge before normalized = 20.9999999999999
+                  charge after normalized = 21.0000000000001
+                 charge before normalized = 21.0001548536125
+                  charge after normalized = 21
+                 charge before normalized = 20.9999999999999
+                  charge after normalized = 21
+                 charge before normalized = 21.000154919835
+                  charge after normalized = 21
+                 charge before normalized = 21.0000000000001
+                  charge after normalized = 21
+                 charge before normalized = 21.0001549983207
+                  charge after normalized = 21
+                 charge before normalized = 20.9999999999999
+                  charge after normalized = 21.0000000000001
+                 charge before normalized = 21.0001550155882
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 21.0001550156048
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 21.0001550145829
+                  charge after normalized = 21
+                            startmag_type = 1
+                       charge from rho_at = 2.88724659386395
+                         charge should be = 3
+                            startmag_type = 1
+                       charge from rho_at = 5.99904704283839
+                         charge should be = 6
+
+ SETUP ATOMIC RHO FOR SPIN 1
+                 Electron number from rho = 12.5
+
+ SETUP ATOMIC RHO FOR SPIN 2
+                 Electron number from rho = 8.50000000000002
+           total electron number from rho = 21
+                                should be = 21

@@ -1,0 +1,11 @@
+kpoint_file: KLINES
+calculation: nscf
+basis_type: lcao
+ecutwfc: 100
+scf_thr: 1.0e-7
+ks_solver: genelpa
+nspin: 2
+symmetry: 0
+init_chg: 1
+out_band: 1
+# nbands 将由脚本动态计算

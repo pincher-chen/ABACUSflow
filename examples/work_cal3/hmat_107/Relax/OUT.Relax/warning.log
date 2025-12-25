@@ -1,0 +1,111 @@
+ AUTO_SET NBANDS to 25
+ Grid_Technique::init_atoms_on_grid  warning : No atom on this sub-FFT-mesh.
+      Processor           Atom
+              1            274
+              2            272
+              3            267
+              4            271
+              5            271
+              6            274
+              7            271
+              8            271
+              9            267
+             10            273
+             11              0
+             12              0
+             13              0
+             14              0
+             15              0
+             16              0
+                            startmag_type = 1
+                       charge from rho_at = 2.88725
+                         charge should be = 3
+                            startmag_type = 1
+                       charge from rho_at = 5.99905
+                         charge should be = 6
+
+ SETUP ATOMIC RHO FOR SPIN 1
+                 Electron number from rho = 12.5
+
+ SETUP ATOMIC RHO FOR SPIN 2
+                 Electron number from rho = 8.5
+           total electron number from rho = 21
+                                should be = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999983320296
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.999997799861
+                  charge after normalized = 21
+                 charge before normalized = 20.9999999999999
+                  charge after normalized = 21
+                 charge before normalized = 20.9999977479406
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976209747
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.999997607107
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976078176
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086924
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086464
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086982
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086743
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086047
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.999997608654
+                  charge after normalized = 21
+                 charge before normalized = 21.0000000000001
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976087164
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976085352
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976086651
+                  charge after normalized = 21
+                 charge before normalized = 21
+                  charge after normalized = 21
+                 charge before normalized = 20.9999976085747
+                  charge after normalized = 21
+                            startmag_type = 1
+                       charge from rho_at = 2.88724659386395
+                         charge should be = 3
+                            startmag_type = 1
+                       charge from rho_at = 5.99904704283839
+                         charge should be = 6
+
+ SETUP ATOMIC RHO FOR SPIN 1
+                 Electron number from rho = 12.5
+
+ SETUP ATOMIC RHO FOR SPIN 2
+                 Electron number from rho = 8.50000000000001
+           total electron number from rho = 21
+                                should be = 21

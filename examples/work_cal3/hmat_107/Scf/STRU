@@ -1,0 +1,30 @@
+ATOMIC_SPECIES
+Li   6.9400 Li_ONCV_PBE-1.0.upf upf201
+O  15.9990 O_ONCV_PBE-1.0.upf upf201
+
+NUMERICAL_ORBITAL
+Li_gga_9au_60Ry_4s1p.orb
+O_gga_7au_60Ry_2s2p1d.orb
+
+LATTICE_CONSTANT
+1.0000000000
+
+LATTICE_VECTORS
+        3.0889500000        0.0000000000        0.0000000000
+       -0.0000000000        3.0889500000        0.0000000000
+        0.0000000000        0.0000000000        3.0889500000
+
+ATOMIC_POSITIONS
+Direct
+
+Li #label
+1.0000   #magnetism
+1 #number of atoms
+        0.0000000000        0.0000000000        0.0000000000 m 1 1 1
+
+O #label
+1.0000   #magnetism
+3 #number of atoms
+        0.5000000000        0.5000000000        0.0000000000 m 1 1 1
+        0.5000000000        0.0000000000        0.5000000000 m 1 1 1
+        0.0000000000        0.5000000000        0.5000000000 m 1 1 1

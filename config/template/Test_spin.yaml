@@ -1,0 +1,8 @@
+calculation: scf
+basis_type: lcao
+ecutwfc: 60
+scf_thr: 1.0e-6
+scf_nmax: 20
+nspin: 2
+symmetry: 1
+

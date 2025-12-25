@@ -1,0 +1,216 @@
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+                                                                                     
+                              ABACUS v3.10.0
+
+               Atomic-orbital Based Ab-initio Computation at UStc                    
+
+                     Website: http://abacus.ustc.edu.cn/                             
+               Documentation: https://abacus.deepmodeling.com/                       
+                  Repository: https://github.com/abacusmodeling/abacus-develop       
+                              https://github.com/deepmodeling/abacus-develop         
+                      Commit: unknown
+
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+Info: Local MPI proc number: 1,OpenMP thread number: 1,Total thread number: 1,Local thread limit: 64
+ Wed Dec 24 18:22:53 2025
+ MAKE THE DIR         : OUT.Scf/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+!!! WARNING: Some atoms are too close!!!
+!!! Please check the nearest-neighbor list in log file.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+!!! WARNING: Some atoms are too close!!!
+!!! Please check the nearest-neighbor list in log file.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+!!! WARNING: Some atoms are too close!!!
+!!! Please check the nearest-neighbor list in log file.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% WARNING  WARNING  WARNING  WARNING  WARNING  %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ RUNNING WITH DEVICE  : CPU / Intel(R) Xeon(R) Platinum 8358P CPU @ 2.60GHz
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ Warning: the number of valence electrons in pseudopotential > 1 for Li: [He] 2s1
+ Pseudopotentials with additional electrons can yield (more) accurate outcomes, but may be less efficient.
+ If you're confident that your chosen pseudopotential is appropriate, you can safely ignore this warning.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ UNIFORM GRID DIM        : 20 * 20 * 20
+ UNIFORM GRID DIM(BIG)   : 10 * 10 * 10
+ DONE(0.812974   SEC) : SETUP UNITCELL
+ DONE(0.844276   SEC) : SYMMETRY
+ DONE(0.951793   SEC) : INIT K-POINTS
+ ---------------------------------------------------------
+ Self-consistent calculations for electrons
+ ---------------------------------------------------------
+ SPIN    KPOINTS         PROCESSORS  THREADS     NBASE       
+ 2       8               16          16          46          
+ ---------------------------------------------------------
+ Use Systematically Improvable Atomic bases
+ ---------------------------------------------------------
+ ELEMENT ORBITALS        NBASE       NATOM       XC          
+ Li      4s1p-9au        7           1           
+ O       2s2p1d-7au      13          3           
+ ---------------------------------------------------------
+ Initial plane wave basis and FFT box
+ ---------------------------------------------------------
+ DONE(0.952263   SEC) : INIT PLANEWAVE
+ DONE(1.24188    SEC) : LOCAL POTENTIAL
+ -------------------------------------------
+ SELF-CONSISTENT : 
+ -------------------------------------------
+ START CHARGE      : atomic
+ DONE(2.28142    SEC) : INIT SCF
+ ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+ GE1      1.14e+00   1.14e+00  -1.28837883e+03   0.00000000e+00   2.1501e-01  13.98
+ GE2      4.81e-01   5.08e-01  -1.28810014e+03   2.78696757e-01   1.1444e-01  12.61
+ GE3      4.15e-01   4.15e-01  -1.28728032e+03   8.19814838e-01   6.4825e-02  12.53
+ GE4      2.02e-01   2.03e-01  -1.28743791e+03  -1.57585907e-01   7.7717e-03  12.60
+ GE5      2.05e-01   2.06e-01  -1.28743921e+03  -1.30170701e-03   3.9739e-03  12.60
+ GE6      2.21e-01   2.21e-01  -1.28743924e+03  -2.87278524e-05   1.3445e-03  12.52
+ GE7      2.39e-01   2.39e-01  -1.28743940e+03  -1.65812641e-04   3.4734e-04  12.53
+ GE8      2.45e-01   2.45e-01  -1.28743940e+03   4.84863623e-06   2.2624e-04  12.59
+ GE9      2.55e-01   2.55e-01  -1.28743944e+03  -3.66819710e-05   9.1999e-05  12.50
+ GE10     2.58e-01   2.58e-01  -1.28743944e+03  -2.03243405e-06   5.2050e-05  12.49
+ GE11     2.61e-01   2.61e-01  -1.28743944e+03  -2.94346732e-06   1.1905e-05  12.52
+ GE12     2.62e-01   2.62e-01  -1.28743944e+03  -4.07916817e-07   7.4284e-07  12.56
+ GE13     2.62e-01   2.62e-01  -1.28743944e+03  -1.15460049e-08   4.1107e-07  12.56
+ GE14     2.62e-01   2.62e-01  -1.28743944e+03   8.38533533e-09   2.2613e-07  12.55
+ GE15     2.62e-01   2.62e-01  -1.28743944e+03   4.28885859e-09   2.9880e-08  12.55
+TIME STATISTICS
+----------------------------------------------------------------------------------
+   CLASS_NAME                   NAME                TIME/s  CALLS   AVG/s  PER/%  
+----------------------------------------------------------------------------------
+                 total                              192.03 13       14.77  100.00 
+ Driver          reading                            0.41   1        0.41   0.21   
+ Input_Conv      Convert                            0.00   1        0.00   0.00   
+ Driver          driver_line                        191.62 1        191.62 99.79  
+ UnitCell        check_tau                          0.00   1        0.00   0.00   
+ ESolver_KS_LCAO before_all_runners                 0.75   1        0.75   0.39   
+ PW_Basis_Sup    setuptransform                     0.27   1        0.27   0.14   
+ PW_Basis_Sup    distributeg                        0.00   1        0.00   0.00   
+ mymath          heapsort                           0.00   298      0.00   0.00   
+ Charge_Mixing   init_mixing                        0.00   1        0.00   0.00   
+ Symmetry        analy_sys                          0.03   1        0.03   0.02   
+ PW_Basis_K      setuptransform                     0.00   1        0.00   0.00   
+ PW_Basis_K      distributeg                        0.00   1        0.00   0.00   
+ PW_Basis        setup_struc_factor                 0.07   1        0.07   0.04   
+ NOrbital_Lm     extra_uniform                      0.01   10       0.00   0.00   
+ Mathzone_Add1   SplineD2                           0.00   10       0.00   0.00   
+ Mathzone_Add1   Cubic_Spline_Interpolation         0.00   10       0.00   0.00   
+ ppcell_vl       init_vloc                          0.01   1        0.01   0.00   
+ Ions            opt_ions                           190.78 1        190.78 99.35  
+ ESolver_KS_LCAO runner                             190.78 1        190.78 99.35  
+ ESolver_KS_LCAO before_scf                         1.04   1        1.04   0.54   
+ atom_arrange    search                             0.00   1        0.00   0.00   
+ atom_arrange    grid_d.init                        0.00   1        0.00   0.00   
+ Grid            Construct_Adjacent_expand          0.00   1        0.00   0.00   
+ Grid            Construct_Adjacent_expand_periodic 0.00   4        0.00   0.00   
+ Grid_Technique  init                               0.09   1        0.09   0.05   
+ Grid_BigCell    grid_expansion_index               0.01   2        0.00   0.00   
+ Grid_Driver     Find_atom                          0.00   28       0.00   0.00   
+ Record_adj      for_2d                             0.57   1        0.57   0.30   
+ LCAO_domain     grid_prepare                       0.00   1        0.00   0.00   
+ Veff            initialize_HR                      0.00   1        0.00   0.00   
+ OverlapNew      initialize_SR                      0.00   1        0.00   0.00   
+ EkineticNew     initialize_HR                      0.03   1        0.03   0.02   
+ NonlocalNew     initialize_HR                      0.31   1        0.31   0.16   
+ Charge          set_rho_core                       0.00   1        0.00   0.00   
+ Charge          atomic_rho                         0.01   2        0.00   0.00   
+ PW_Basis_Sup    recip2real                         0.01   209      0.00   0.01   
+ PW_Basis_Sup    gathers_scatterp                   0.01   209      0.00   0.00   
+ Potential       init_pot                           0.01   1        0.01   0.00   
+ Potential       update_from_charge                 0.05   16       0.00   0.03   
+ Potential       cal_fixed_v                        0.00   1        0.00   0.00   
+ PotLocal        cal_fixed_v                        0.00   1        0.00   0.00   
+ Potential       cal_v_eff                          0.05   16       0.00   0.03   
+ H_Hartree_pw    v_hartree                          0.01   16       0.00   0.00   
+ PW_Basis_Sup    real2recip                         0.02   224      0.00   0.01   
+ PW_Basis_Sup    gatherp_scatters                   0.01   224      0.00   0.01   
+ PotXC           cal_v_eff                          0.04   16       0.00   0.02   
+ XC_Functional   v_xc                               0.04   16       0.00   0.02   
+ Potential       interpolate_vrs                    0.00   16       0.00   0.00   
+ Symmetry        rhog_symmetry                      0.01   32       0.00   0.01   
+ Symmetry        group fft grids                    0.00   32       0.00   0.00   
+ H_Ewald_pw      compute_ewald                      0.00   1        0.00   0.00   
+ HSolverLCAO     solve                              189.15 15       12.61  98.50  
+ HamiltLCAO      updateHk                           107.33 120      0.89   55.89  
+ OperatorLCAO    init                               107.27 360      0.30   55.86  
+ Veff            contributeHR                       106.55 30       3.55   55.49  
+ Gint_interface  cal_gint                           168.34 45       3.74   87.66  
+ Gint_interface  cal_gint_vlocal                    101.17 30       3.37   52.68  
+ Gint_Tools      cal_psir_ylm                       3.19   4500     0.00   1.66   
+ Gint_k          transfer_pvpR                      5.39   30       0.18   2.80   
+ OverlapNew      calculate_SR                       0.03   1        0.03   0.01   
+ OverlapNew      contributeHk                       0.03   120      0.00   0.02   
+ EkineticNew     contributeHR                       0.03   30       0.00   0.02   
+ EkineticNew     calculate_HR                       0.03   1        0.03   0.02   
+ NonlocalNew     contributeHR                       0.63   30       0.02   0.33   
+ NonlocalNew     calculate_HR                       0.46   1        0.46   0.24   
+ OperatorLCAO    contributeHk                       0.05   120      0.00   0.02   
+ HSolverLCAO     hamiltSolvePsiK                    2.15   120      0.02   1.12   
+ DiagoElpa       elpa_solve                         0.98   120      0.01   0.51   
+ elecstate       cal_dm                             0.02   15       0.00   0.01   
+ psiMulPsiMpi    pdgemm                             0.02   120      0.00   0.01   
+ DensityMatrix   cal_DMR                            0.27   15       0.02   0.14   
+ ElecStateLCAO   psiToRho                           79.37  15       5.29   41.33  
+ Gint            transfer_DMR                       1.60   15       0.11   0.83   
+ Gint_interface  cal_gint_rho                       67.18  15       4.48   34.98  
+ Charge_Mixing   get_drho                           0.00   15       0.00   0.00   
+ Charge          mix_rho                            0.06   14       0.00   0.03   
+ Charge          Broyden_mixing                     0.05   14       0.00   0.03   
+ ModuleIO        write_rhog                         0.01   1        0.01   0.00   
+ ESolver_KS_LCAO after_scf                          0.02   1        0.02   0.01   
+ ESolver_KS_LCAO after_all_runners                  0.00   1        0.00   0.00   
+ ModuleIO        write_istate_info                  0.00   1        0.00   0.00   
+----------------------------------------------------------------------------------
+
+
+ START  Time  : Wed Dec 24 18:22:53 2025
+ FINISH Time  : Wed Dec 24 18:26:05 2025
+ TOTAL  Time  : 192
+ SEE INFORMATION IN : OUT.Scf/
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects
+[WARNING] yaksa: 2 leaked handle pool objects

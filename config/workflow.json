@@ -1,0 +1,65 @@
+{
+  "Test_spin": {
+    "node": 1,
+    "core": 16,
+    "try_num": 2,
+    "template": "Test_spin",
+    "kval": [0.04, 0.04],
+    "ignore_error": "True",
+    "comment": "Magnetic moment test with nspin=2, generates SPIN_ON/SPIN_OFF marker (kval in Å⁻¹, reciprocal space)"
+  },
+  "Coarse_relax": {
+    "node": 1,
+    "core": 16,
+    "try_num": 2,
+    "parent": "Test_spin",
+    "template": "Coarse_relax",
+    "kval": [0.04, 0.04],
+    "ignore_error": "True", 
+    "comment": "Coarse relax with larger kspacing (0.05→0.04), generates STRU_ION_D"
+  },
+  "Relax": {
+    "node": 1,
+    "core": 16,
+    "try_num": 3,
+    "parent": "Coarse_relax",
+    "parent_files": ["STRU_ION_D"],
+    "template": "Relax",
+    "kval": [0.04, 0.02, 0.02],
+    "ignore_error": "True", 
+    "comment": "Fine relax with increasing K-density (0.04→0.03→0.02), generates final STRU_ION_D"
+  },
+  "Scf": {
+    "node": 1,
+    "core": 16,
+    "try_num": 2,
+    "parent": "Relax",
+    "parent_files": ["STRU_ION_D"],
+    "template": "Scf",
+    "kval": [0.02,0.02],
+    "comment": "Self-consistent calculation using Relax final structure (kspacing=0.02 for high accuracy)"
+  },
+  "Band": {
+    "node": 1,
+    "core":16,
+    "try_num": 2,
+    "parent": "Scf",
+    "parent_files": ["STRU_ION_D", "SPIN1_CHG.cube", "SPIN2_CHG.cube"],
+    "template": "Band",
+    "ktype": "Line",
+    "kval": [20],
+    "ignore_error": "True",
+    "comment": "STRU_ION_D from Relax, CHG files from Scf"
+  },
+  "Dos": {
+    "node": 1,
+    "core": 16,
+    "try_num": 2,
+    "parent": "Scf",
+    "parent_files": ["STRU_ION_D", "SPIN1_CHG.cube", "SPIN2_CHG.cube"],
+    "template": "Dos",
+    "kval": [0.02],
+    "ignore_error": "True",
+    "comment": "STRU_ION_D from Relax, CHG files from Scf"
+  }
+}

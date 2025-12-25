@@ -1,0 +1,20 @@
+INPUT_PARAMETERS
+# Created by Atomic Simulation Enviroment
+suffix              Dos
+pseudo_dir          /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/PotSG15
+orbital_dir         /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/OrbSG15std
+calculation         nscf
+ntype               2
+nspin               2
+nbands              25
+symmetry            0
+ecutwfc             100
+scf_thr             1e-07
+init_chg            1
+out_dos             1
+ks_solver           genelpa
+basis_type          lcao
+dos_sigma           0.07
+gamma_only          0
+
+

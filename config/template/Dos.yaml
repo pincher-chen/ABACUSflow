@@ -1,0 +1,11 @@
+calculation: nscf
+basis_type: lcao
+ecutwfc: 100
+scf_thr: 1.0e-7
+ks_solver: genelpa
+nspin: 2
+symmetry: 0
+init_chg: file
+out_dos: 1
+dos_sigma: 0.07
+# nbands 将由脚本动态计算
