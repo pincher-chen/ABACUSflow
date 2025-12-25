@@ -1,0 +1,356 @@
+[...]TASK START!
+[...]Structure: InputPoscar/hmat_107.poscar
+[...]Working directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107
+[...]start Test_spin task
+[INFO] Test_spin started at 2025-12-25 10:31:01
+[...]prepare Test_spin inputs.
+[INFO] Generating input files for stage: Test_spin
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin
+[INFO] Input files generated successfully
+[...]task Test_spin round: 0 on 1 node 16 core
+
+======================================================================
+[10:31:14] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.24204752e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.8147e-01  t=  5.29s
+  GE  2  E=-1.23964596e+03eV  ŒîE=2.40155592e+00  ŒîDens=1.6473e-01  t=  4.39s
+  GE  5  E=-1.23840789e+03eV  ŒîE=1.69191844e-03  ŒîDens=3.7033e-03  t=  4.37s
+  GE  8  E=-1.23840877e+03eV  ŒîE=-3.84337356e-06  ŒîDens=6.3943e-05  t=  4.37s  Ì†ΩÌ¥∏
+  GE  9  E=-1.23840877e+03eV  ŒîE=-7.54827124e-08  ŒîDens=9.6168e-06  t=  4.37s  Ì†ΩÌ¥∏
+  GE 10  E=-1.23840877e+03eV  ŒîE=1.01830906e-08  ŒîDens=5.3832e-06  t=  4.36s  Ì†ΩÌ¥∏
+  GE 11  E=-1.23840877e+03eV  ŒîE=-3.80297357e-09  ŒîDens=3.6048e-07  t=  4.37s  Ì†ΩÌ¥∏
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin/OUT.Test_spin/running_scf.log
+[INFO] Calculation finished
+[INFO] SCF (electronic) converged
+[INFO] SCF calculation converged
+[INFO] Created converge.txt
+[...]iteration 0: converged successfully!
+[INFO] Checking magnetic moment in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin/OUT.Test_spin/running_scf.log
+[INFO] Final magnetic moment: 0.999876
+[INFO] Spin needed: |mag| = 0.999876 > 0.004
+[INFO] Created /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/SPIN_ON
+[...]Test_spin job done!
+[INFO] Checking magnetic moment in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Test_spin/OUT.Test_spin/running_scf.log
+[INFO] Final magnetic moment: 0.999876
+[INFO] Spin needed: |mag| = 0.999876 > 0.004
+[INFO] Created /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/SPIN_ON
+[INFO] Test_spin completed in 61s (0.0169h)
+[INFO] Test_spin consumed 0.27 Core-hours (1nodes * 16cores * 0.0169h)
+[...]start Coarse_relax task
+[INFO] Coarse_relax started at 2025-12-25 10:32:02
+[...]prepare Coarse_relax inputs.
+[INFO] Generating input files for stage: Coarse_relax
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax
+[INFO] Input files generated successfully
+[...]task Coarse_relax round: 0 on 1 node 16 core
+
+======================================================================
+[10:32:22] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.24207490e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.8216e-01  t= 11.00s
+  GE  2  E=-1.23967244e+03eV  ŒîE=2.40245677e+00  ŒîDens=1.6464e-01  t= 10.18s
+  GE  5  E=-1.23843433e+03eV  ŒîE=1.38232909e-03  ŒîDens=3.6275e-03  t= 10.15s
+  GE  8  E=-1.23843520e+03eV  ŒîE=-5.23769421e-06  ŒîDens=5.6981e-05  t= 10.14s  Ì†ΩÌ¥∏
+  GE  9  E=-1.23843520e+03eV  ŒîE=-5.64728717e-08  ŒîDens=1.0889e-05  t= 10.16s  Ì†ΩÌ¥∏
+  GE 10  E=-1.23843520e+03eV  ŒîE=-8.37296102e-09  ŒîDens=5.9792e-06  t= 10.14s  Ì†ΩÌ¥∏
+
+======================================================================
+[10:34:04] ‚ö†Ô∏è  RELAXATION CONVERGED (but SCF unconverged - unreliable!)
+======================================================================
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax/OUT.Coarse_relax/running_relax.log
+[INFO] Calculation finished
+[WARNING] Relax (ionic) converged, but SCF unconverged - results unreliable
+[WARNING] Calculation finished but did not converge
+[...]calculation not done, prepare to next loop
+[INFO] Updating input files in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax
+[INFO] Try number: 0, Stage: Coarse_relax
+[INFO] Backed up INPUT -> INPUT0
+[INFO] Backed up KPT -> KPT0
+[INFO] Backed up STRU -> STRU0
+[INFO] Updated STRU from last iteration's optimized geometry:
+       Copied OUT.Coarse_relax/STRU_ION_D -> STRU
+[INFO] Updating K-points with kspacing=0.04 √Ö‚Åª¬π
+[INFO] K-points updated: 8 8 8
+[INFO] No parameter updates needed
+[...]task Coarse_relax round: 1 on 1 node 16 core
+
+======================================================================
+[10:34:28] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.28903664e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.2072e-01  t= 11.13s
+  GE  2  E=-1.28878810e+03eV  ŒîE=2.48548795e-01  ŒîDens=1.1521e-01  t= 10.27s
+  GE  5  E=-1.28814784e+03eV  ŒîE=-8.27226534e-04  ŒîDens=3.5258e-03  t= 10.26s
+  GE  9  E=-1.28814825e+03eV  ŒîE=-9.70469009e-07  ŒîDens=1.7801e-05  t= 10.23s  Ì†ΩÌ¥∏
+  GE 10  E=-1.28814825e+03eV  ŒîE=-3.24748304e-09  ŒîDens=2.8159e-06  t= 10.23s  Ì†ΩÌ¥∏
+
+======================================================================
+[10:36:10] ‚ö†Ô∏è  RELAXATION CONVERGED (but SCF unconverged - unreliable!)
+======================================================================
+[...]checking iteration 1 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Coarse_relax/OUT.Coarse_relax/running_relax.log
+[INFO] Calculation finished
+[WARNING] Relax (ionic) converged, but SCF unconverged - results unreliable
+[WARNING] Calculation finished but did not converge
+[...]last iteration completed
+[...]Job failed or not converged
+[...]Not converged but can be ignored (ignore.txt exists), continuing...
+[INFO] Coarse_relax completed in 253s (0.0703h)
+[INFO] Coarse_relax consumed 1.12 Core-hours (1nodes * 16cores * 0.0703h)
+[...]start Relax task
+[INFO] Relax started at 2025-12-25 10:36:15
+[...]prepare Relax inputs.
+[INFO] Generating input files for stage: Relax
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax
+[INFO] Will use Coarse_relax optimized structure: STRU_ION_D
+[INFO] Copied optimized STRU from previous stage
+[INFO] Input files generated successfully
+[...]task Relax round: 0 on 1 node 16 core
+
+======================================================================
+[10:36:39] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.24207743e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.8198e-01  t= 13.31s
+  GE  2  E=-1.23967492e+03eV  ŒîE=2.40251148e+00  ŒîDens=1.6476e-01  t= 12.32s
+  GE  5  E=-1.23843677e+03eV  ŒîE=1.38650740e-03  ŒîDens=3.6233e-03  t= 12.30s
+  GE  8  E=-1.23843765e+03eV  ŒîE=-5.26371352e-06  ŒîDens=5.7067e-05  t= 12.29s  Ì†ΩÌ¥∏
+  GE  9  E=-1.23843765e+03eV  ŒîE=-5.92555447e-08  ŒîDens=1.0787e-05  t= 12.29s  Ì†ΩÌ¥∏
+  GE 10  E=-1.23843765e+03eV  ŒîE=-2.50502443e-09  ŒîDens=5.9357e-06  t= 12.29s  Ì†ΩÌ¥∏
+
+======================================================================
+[10:38:41] ‚ö†Ô∏è  RELAXATION CONVERGED (but SCF unconverged - unreliable!)
+======================================================================
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/OUT.Relax/running_relax.log
+[INFO] Calculation finished
+[WARNING] Relax (ionic) converged, but SCF unconverged - results unreliable
+[WARNING] Calculation finished but did not converge
+[...]calculation not done, prepare to next loop
+[INFO] Updating input files in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax
+[INFO] Try number: 0, Stage: Relax
+[INFO] Backed up INPUT -> INPUT0
+[INFO] Backed up KPT -> KPT0
+[INFO] Backed up STRU -> STRU0
+[INFO] Updated STRU from last iteration's optimized geometry:
+       Copied OUT.Relax/STRU_ION_D -> STRU
+[INFO] Updating K-points with kspacing=0.02 √Ö‚Åª¬π
+[INFO] K-points updated: 16 16 16
+[INFO] No parameter updates needed
+[...]task Relax round: 1 on 1 node 16 core
+
+======================================================================
+[10:39:07] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.28908902e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.2072e-01  t= 13.95s
+  GE  2  E=-1.28884889e+03eV  ŒîE=2.40127600e-01  ŒîDens=1.1573e-01  t= 12.93s
+  GE  5  E=-1.28820322e+03eV  ŒîE=-4.16961743e-04  ŒîDens=3.6070e-03  t= 12.90s
+  GE  9  E=-1.28820370e+03eV  ŒîE=-3.31815389e-07  ŒîDens=1.1466e-05  t= 12.89s  Ì†ΩÌ¥∏
+  GE 10  E=-1.28820370e+03eV  ŒîE=-4.73394706e-09  ŒîDens=2.6880e-06  t= 12.95s  Ì†ΩÌ¥∏
+
+======================================================================
+[10:41:14] ‚ö†Ô∏è  RELAXATION CONVERGED (but SCF unconverged - unreliable!)
+======================================================================
+[...]checking iteration 1 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/OUT.Relax/running_relax.log
+[INFO] Calculation finished
+[WARNING] Relax (ionic) converged, but SCF unconverged - results unreliable
+[WARNING] Calculation finished but did not converge
+[...]calculation not done, prepare to next loop
+[INFO] Updating input files in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax
+[INFO] Try number: 1, Stage: Relax
+[INFO] Backed up INPUT -> INPUT1
+[INFO] Backed up KPT -> KPT1
+[INFO] Backed up STRU -> STRU1
+[INFO] Updated STRU from last iteration's optimized geometry:
+       Copied OUT.Relax/STRU_ION_D -> STRU
+[INFO] Updating K-points with kspacing=0.02 √Ö‚Åª¬π
+[INFO] K-points updated: 16 16 16
+[INFO] No parameter updates needed
+[...]task Relax round: 2 on 1 node 16 core
+
+======================================================================
+[10:41:43] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.28908902e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.2072e-01  t= 14.70s
+  GE  2  E=-1.28884889e+03eV  ŒîE=2.40127600e-01  ŒîDens=1.1573e-01  t= 13.56s
+  GE  5  E=-1.28820322e+03eV  ŒîE=-4.16961743e-04  ŒîDens=3.6070e-03  t= 13.46s
+  GE  9  E=-1.28820370e+03eV  ŒîE=-3.31815389e-07  ŒîDens=1.1466e-05  t= 13.42s  Ì†ΩÌ¥∏
+  GE 10  E=-1.28820370e+03eV  ŒîE=-4.73394706e-09  ŒîDens=2.6880e-06  t= 13.36s  Ì†ΩÌ¥∏
+
+======================================================================
+[10:43:57] ‚ö†Ô∏è  RELAXATION CONVERGED (but SCF unconverged - unreliable!)
+======================================================================
+[...]checking iteration 2 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Relax/OUT.Relax/running_relax.log
+[INFO] Calculation finished
+[WARNING] Relax (ionic) converged, but SCF unconverged - results unreliable
+[WARNING] Calculation finished but did not converge
+[...]last iteration completed
+[...]Job failed or not converged
+[...]Not converged but can be ignored (ignore.txt exists), continuing...
+[INFO] Relax completed in 466s (0.1294h)
+[INFO] Relax consumed 2.07 Core-hours (1nodes * 16cores * 0.1294h)
+[...]start Scf task
+[INFO] Scf started at 2025-12-25 10:44:01
+[...]prepare Scf inputs.
+[INFO] Generating input files for stage: Scf
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf
+[INFO] Will use Relax optimized structure: OUT.Relax/STRU_ION_D
+[INFO] Copied optimized STRU from previous stage
+[INFO] Input files generated successfully
+[...]task Scf round: 0 on 1 node 16 core
+
+======================================================================
+[10:44:22] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.28837883e+03eV  ŒîE=0.00000000e+00  ŒîDens=2.1501e-01  t= 13.37s
+  GE  2  E=-1.28810014e+03eV  ŒîE=2.78696757e-01  ŒîDens=1.1444e-01  t= 12.58s
+  GE  5  E=-1.28743921e+03eV  ŒîE=-1.30170701e-03  ŒîDens=3.9739e-03  t= 12.52s
+  GE  9  E=-1.28743944e+03eV  ŒîE=-3.66819710e-05  ŒîDens=9.1999e-05  t= 12.54s  Ì†ΩÌ¥∏
+  GE 10  E=-1.28743944e+03eV  ŒîE=-2.03243405e-06  ŒîDens=5.2050e-05  t= 12.54s  Ì†ΩÌ¥∏
+  GE 11  E=-1.28743944e+03eV  ŒîE=-2.94346732e-06  ŒîDens=1.1905e-05  t= 12.52s  Ì†ΩÌ¥∏
+  GE 12  E=-1.28743944e+03eV  ŒîE=-4.07916817e-07  ŒîDens=7.4284e-07  t= 12.57s  Ì†ΩÌ¥∏
+  GE 13  E=-1.28743944e+03eV  ŒîE=-1.15460049e-08  ŒîDens=4.1107e-07  t= 12.51s  Ì†ΩÌ¥∏
+  GE 14  E=-1.28743944e+03eV  ŒîE=8.38533533e-09  ŒîDens=2.2613e-07  t= 12.51s  Ì†ΩÌ¥∏
+  GE 15  E=-1.28743944e+03eV  ŒîE=4.28885859e-09  ŒîDens=2.9880e-08  t= 12.50s  ‚úÖ
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf/OUT.Scf/running_scf.log
+[INFO] Calculation finished
+[INFO] SCF (electronic) converged
+[INFO] SCF calculation converged
+[INFO] Created converge.txt
+[...]iteration 0: converged successfully!
+[...]Scf job done!
+[INFO] Scf completed in 201s (0.0558h)
+[INFO] Scf consumed 0.89 Core-hours (1nodes * 16cores * 0.0558h)
+[...]start Band task
+[INFO] Band started at 2025-12-25 10:47:22
+[...]prepare Band inputs.
+[INFO] Generating input files for stage: Band
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Band/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Band
+[INFO] Will use Scf STRU file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf/STRU
+[INFO] Linked charge density: SPIN2_CHG.cube
+[INFO] Linked charge density: SPIN1_CHG.cube
+[INFO] Set init_chg=1 for Band calculation
+[INFO] Copied optimized STRU from previous stage
+[INFO] Input files generated successfully
+[...]task Band round: 0 on 1 node 16 core
+
+======================================================================
+[10:47:41] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.29075514e+03eV  ŒîE=0.00000000e+00  ŒîDens=0.0000e+00  t=  8.81s  ‚úÖ
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Band/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Band/OUT.Band/running_nscf.log
+[INFO] Calculation finished
+[INFO] SCF (electronic) converged
+[INFO] SCF calculation converged
+[INFO] Created converge.txt
+[...]iteration 0: converged successfully!
+[...]Band job done!
+[INFO] Band completed in 22s (0.0061h)
+[INFO] Band consumed 0.10 Core-hours (1nodes * 16cores * 0.0061h)
+[...]start Dos task
+[INFO] Dos started at 2025-12-25 10:47:44
+[...]prepare Dos inputs.
+[INFO] Generating input files for stage: Dos
+[INFO] Structure file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Dos/../STRU.vasp
+[INFO] Work directory: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Dos
+[INFO] Will use Scf STRU file: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Scf/STRU
+[INFO] Linked charge density: SPIN2_CHG.cube
+[INFO] Linked charge density: SPIN1_CHG.cube
+[INFO] Set init_chg=1 for Dos calculation
+[INFO] Copied optimized STRU from previous stage
+[INFO] Input files generated successfully
+[...]task Dos round: 0 on 1 node 16 core
+
+======================================================================
+[10:48:00] ‚ö° SCF Iterations
+======================================================================
+  ITER      TMAG       AMAG        ETOT/eV          EDIFF/eV         DRHO     TIME/s
+  GE  1  E=-1.28742836e+03eV  ŒîE=0.00000000e+00  ŒîDens=0.0000e+00  t=  8.11s  ‚úÖ
+[...]checking iteration 0 result...
+[INFO] Checking errors in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Dos/running.log
+[INFO] No obvious errors detected
+[INFO] Checking convergence in: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107/Dos/OUT.Dos/running_nscf.log
+[INFO] Calculation finished
+[INFO] SCF (electronic) converged
+[INFO] SCF calculation converged
+[INFO] Created converge.txt
+[...]iteration 0: converged successfully!
+[...]Dos job done!
+[INFO] Dos completed in 34s (0.0094h)
+[INFO] Dos consumed 0.15 Core-hours (1nodes * 16cores * 0.0094h)
+
+======================================================================
+                    WORKFLOW SUMMARY
+======================================================================
+
+[INFO] Individual Stage Statistics:
+----------------------------------------------------------------------
+Stage           Duration(s)  Nodes    Cores    Core-hours      Status         
+----------------------------------------------------------------------
+Test_spin       61s (0.02h)  1        16       0.27            Test_spin success
+Coarse_relax    253s (0.07h) 1        16       1.12            Coarse_relax success (ignored)
+Relax           466s (0.13h) 1        16       2.07            Relax success (ignored)
+Scf             201s (0.06h) 1        16       0.89            Scf success    
+Band            22s (0.01h)  1        16       0.10            Band success   
+Dos             34s (0.01h)  1        16       0.15            Dos success    
+----------------------------------------------------------------------
+
+[INFO] Total Workflow Statistics:
+  Total Duration    : 1037s (0.2881h)
+  Total Core-hours  : 4.60
+  Workflow Start    : 2025-12-25 10:31:01
+  Workflow End      : 2025-12-25 10:48:18
+
+======================================================================
+[INFO] Summary for: /XYFS01/nscc-gz_pinchen_1/work/dev/abacusflow/work_cal7/hmat_107
+
+=== Calculation Status ===
+Test_spin success
+Coarse_relax success (ignored)
+Relax success (ignored)
+Scf success
+Band success
+Dos success
+
+
+=== Stage Status ===
+Test_spin: ‚úì Converged
+Coarse_relax: ‚úó Not converged
+Relax: ‚úó Not converged
+Scf: ‚úì Converged
+Band: ‚úì Converged
+Dos: ‚úì Converged
+[...]ALL STAGES COMPLETED!
