@@ -36,8 +36,8 @@ abacusflow/
 │       ├── Scf.yaml
 │       ├── Band.yaml
 │       └── Dos.yaml
-├── InputPoscar/             # 输入结构文件（VASP POSCAR 格式）
-└── work_cal/                # 计算工作目录（自动生成）
+├── examples/InputPoscar/             # 输入结构文件（VASP POSCAR 格式）
+└── examples/work_cal/                # 计算工作目录（自动生成）
 ```
 
 ## 🚀 快速开始
