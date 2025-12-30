@@ -421,12 +421,4 @@ cd work_cal/structure_name/Scf
 python /path/to/abacus.py generate --work_dir . --stage Scf
 ```
 
-## 📞 支持
 
-- 文档: `doc/` 目录
-- 示例: `InputPoscar/` 目录
-- 配置模板: `config/template/` 目录
-
-## 📄 许可证
-
-详见 LICENSE 文件。
