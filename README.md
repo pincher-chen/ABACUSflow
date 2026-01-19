@@ -61,7 +61,7 @@ conda activate dftflow
 - NumPy
 ```
 
-### 2. 生成工作流
+### 2. 生成工作流或指定工作流中的特定步进行计算
 
 ```bash
 # 方式1：使用新格式（推荐）
@@ -69,6 +69,10 @@ python abacus.py workflow InputPoscar/ work_cal/
 
 # 方式2：使用旧格式（向后兼容）
 python abacus.py InputPoscar/ work_cal/ --workflow
+
+# 指定特定流程步进行计算
+python abacus.py single workflow InputPoscar/ work_cal/ -t Scf -k 0.02
+
 ```
 
 生成的脚本包含：
@@ -77,6 +81,8 @@ python abacus.py InputPoscar/ work_cal/ --workflow
 - 实时监控
 - 时间和资源统计
 - 智能错误处理和重试
+
+
 
 ### 3. 提交作业
 
