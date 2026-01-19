@@ -2,7 +2,7 @@
 
 自动化 ABACUS 第一性原理计算的工作流管理系统，支持完整的多阶段计算流程、实时监控和资源统计。
 
-## ✨ 主要特性
+## 主要特性
 
 - 🔄 **自动化工作流**: Test_spin → Coarse_relax → Relax → Scf → Band → Dos
 - 📊 **实时监控**: 支持 LCAO 和 PW 基组，实时显示离子步、电子步和收敛状态
@@ -12,7 +12,7 @@
 - 🚀 **自动提交**: ⭐ 支持大规模作业（10w+）自动提交到Slurm，智能资源管理
 - 📝 **模块化设计**: 清晰的代码结构，易于维护和扩展
 
-## 📂 文件结构
+## 文件结构
 
 ```
 abacusflow/
@@ -231,7 +231,7 @@ python abacus.py summary --root <dir>
 # 显示所有阶段的状态和统计信息
 ```
 
-## 📊 工作流阶段详解
+## 工作流阶段详解
 
 ### 结构传递链
 
@@ -310,7 +310,7 @@ Coarse_relax|2850|1|16|12.67|success
 ...
 ```
 
-## 🎯 实时监控说明
+##  实时监控说明
 
 ### 监控信息
 
@@ -458,12 +458,5 @@ cd work_cal/structure_name/Scf
 python /path/to/abacus.py generate --work_dir . --stage Scf
 ```
 
-## 📞 支持
-
-- 文档: `doc/` 目录
-- 示例: `InputPoscar/` 目录
-- 配置模板: `config/template/` 目录
-
-## 📄 许可证
 
 详见 LICENSE 文件。
