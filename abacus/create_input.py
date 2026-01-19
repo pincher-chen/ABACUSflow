@@ -69,6 +69,7 @@ pw_keys = [
         'out_wf',          # output wave functions
         'out_dos',         # output energy and dos
         'out_band',        # output energy and band structure
+        'out_bandgap',     # output band gap information (ABACUS v3.10+)
         'nx',              # number of points along x axis for FFT grid
         'ny',              # number of points along y axis for FFT grid
         'nz'               # number of points along z axis for FFT grid
@@ -80,7 +81,8 @@ relaxation_keys = [
         'vna',             # use the vna or not
         'grid_speed',      # 1:normal 2:fast
         'force_set',       # output the force_set or not
-        'force',           # calculate the force
+        'force',           # calculate the force (old parameter name)
+        'cal_force',       # calculate the force (ABACUS v3.10+)
         'nstep',           # number of ion iteration steps
         'out_stru',        # output the structure files after each ion step
         'force_thr',       # force threshold,  unit: Ry/Bohr
@@ -95,7 +97,8 @@ relaxation_keys = [
         'trust_radius_max', # maximal trust radius,  unit: Bohr
         'trust_radius_min', # minimal trust radius,  unit: Bohr
         'trust_radius_ini', # initial trust radius,  unit: Bohr
-        'stress',           # calculate the stress or not
+        'stress',           # calculate the stress or not (old parameter name)
+        'cal_stress',       # calculate the stress or not (ABACUS v3.10+)
         'fixed_axes',       # which axes are fixed
         'move_method',      # bfgs; sd; cg; cg_bfgs;
         'relax_method',     # alias for move_method
@@ -113,6 +116,9 @@ lcao_keys = [
         'lcao_dr',          # delta r for 1D integration in LCAO
         'lcao_rmax',        # max R for 1D two-center integration table
         'out_hs',           # output H and S matrix
+        'out_hsr_npz',      # output H(R) and S(R) matrices in npz format (ABACUS v3.10+)
+        'out_dm_npz',       # output density matrix in npz format (ABACUS v3.10+)
+        'out_mul',          # output Mulliken population analysis (ABACUS v3.10+)
         'out_lowf',         # ouput LCAO wave functions
         'bx',               # division of an element grid in FFT grid along x
         'by',               # division of an element grid in FFT grid along y
@@ -307,6 +313,7 @@ class AbacusInput(object):
         self.vdw_d2_params = {}
         self.spectrum_params = {}
         self.tddft_params = {}
+        self.custom_params = {}  # 用于存储任意自定义参数
         
         for key in general_keys:
             self.general_params[key] = None
@@ -392,7 +399,9 @@ class AbacusInput(object):
             elif key in self.kpt_params:
                 self.kpt_params[key] = kwargs[key]
             else:
-                raise TypeError('Parameter not defined:  ' + key)
+                # 允许任意自定义参数，而不是抛出异常
+                self.custom_params[key] = kwargs[key]
+                print(f"[INFO] Custom parameter added: {key} = {kwargs[key]}")
     # Set the INPUT and KPT parameters  -END-
 
     # Write INPUT file  -START-
@@ -482,6 +491,12 @@ class AbacusInput(object):
             input_file.write('\n')
 
             for key, val in self.tddft_params.items():
+                if val is not None:
+                    params = str(key) + ' ' * (20 - len(key)) + str(val)
+                    input_file.write('%s\n' % params)
+            
+            # 写入自定义参数
+            for key, val in self.custom_params.items():
                 if val is not None:
                     params = str(key) + ' ' * (20 - len(key)) + str(val)
                     input_file.write('%s\n' % params)

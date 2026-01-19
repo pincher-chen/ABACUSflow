@@ -1,9 +1,9 @@
-calculation: relax
+calculation: cell-relax
 basis_type: lcao
-ecutwfc: 100
-scf_thr: 1.0e-8
-scf_nmax: 10 #100
-relax_nmax: 10 #100
+ecutwfc: 120
+scf_thr: 1.0e-6
+scf_nmax: 100 #100
+relax_nmax: 100 #100
 force_thr_ev: 0.01
 stress_thr: 0.5
 relax_method: cg
@@ -15,3 +15,7 @@ mixing_beta: 0.4
 nspin: 2
 symmetry: 1
 out_chg: 0
+cal_force: 1
+cal_stress: 1
+out_level: i
+out_stru: 1

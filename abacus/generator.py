@@ -6,6 +6,7 @@
 """
 
 import os
+import re
 from pathlib import Path
 
 try:
@@ -14,7 +15,49 @@ except ImportError:
     read = None
 
 # 导入本地模块
-from abacus.stru_utils import write_input_stru, get_total_valence_electrons
+from abacus.stru_utils import (
+    write_input_stru, 
+    get_total_valence_electrons,
+    check_elements_supported,
+    get_supported_elements
+)
+
+
+def get_nlocal_from_scf(work_dir):
+    """
+    从 Scf 阶段的 running.log 中读取 NLOCAL 值
+    
+    Args:
+        work_dir: 当前工作目录 (Path 对象)
+    
+    Returns:
+        NLOCAL 值 (int)，如果找不到返回 None
+    """
+    scf_dir = work_dir.parent / 'Scf'
+    if not scf_dir.exists():
+        return None
+    
+    # 查找 running.log
+    log_files = list(scf_dir.glob('OUT.*/running*.log'))
+    if not log_files:
+        log_files = list(scf_dir.glob('running*.log'))
+    
+    if not log_files:
+        return None
+    
+    # 读取最新的 log 文件
+    log_file = max(log_files, key=lambda p: p.stat().st_mtime)
+    
+    try:
+        content = log_file.read_text()
+        # 搜索 NLOCAL = xx 的行
+        match = re.search(r'NLOCAL\s*=\s*(\d+)', content)
+        if match:
+            return int(match.group(1))
+    except Exception:
+        pass
+    
+    return None
 
 def generate_input_files(work_dir, stage, stru_file, config_get, incar_template, workflow, click_echo=print):
     """
@@ -88,8 +131,63 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
             click_echo(f"[WARNING] Scf STRU not found, using original: {stru_file}")
     
     # 读取结构文件（用于获取元素类型等信息）
-    stru = read(stru_file, format='vasp')
+    # 根据文件扩展名选择正确的格式
+    stru_file_lower = str(stru_file).lower()
+    if stru_file_lower.endswith('.cif'):
+        stru = read(stru_file, format='cif')
+    elif stru_file_lower.endswith('.xyz'):
+        stru = read(stru_file, format='xyz')
+    elif stru_file_lower.endswith(('.vasp', '.poscar', '.contcar')):
+        stru = read(stru_file, format='vasp')
+    else:
+        # 尝试自动检测格式
+        stru = read(stru_file)
     ntype = len(set(stru.get_chemical_symbols()))
+    
+    # ========================================
+    # 关键检查：验证所有元素是否被支持
+    # ========================================
+    potential_name = 'PotSG15'  # 默认使用 SG15 赝势
+    basis_name = 'SG15std'      # 默认使用 SG15 标准基组
+    
+    is_supported, unsupported_elements = check_elements_supported(
+        stru, potential_name, basis_name
+    )
+    
+    if not is_supported:
+        supported_elements = get_supported_elements(potential_name, basis_name)
+        
+        click_echo("")
+        click_echo("=" * 70)
+        click_echo("❌ ERROR: Unsupported Elements Detected")
+        click_echo("=" * 70)
+        click_echo(f"Structure contains unsupported elements: {', '.join(unsupported_elements)}")
+        click_echo("")
+        click_echo(f"Currently using:")
+        click_echo(f"  - Pseudopotential: {potential_name} (69 elements)")
+        click_echo(f"  - Orbital basis:   {basis_name} (68 elements)")
+        click_echo("")
+        click_echo(f"Supported elements:")
+        click_echo(f"  {', '.join(sorted(list(supported_elements)))}")
+        click_echo("")
+        click_echo("=" * 70)
+        click_echo("🔧 Solutions:")
+        click_echo("=" * 70)
+        click_echo("1. Remove unsupported elements from your structure")
+        click_echo("2. Replace with similar supported elements")
+        click_echo("3. Use a different pseudopotential library (if available)")
+        click_echo("")
+        click_echo("📚 References:")
+        click_echo("  - SG15 pseudopotentials: http://www.quantum-simulation.org/potentials/sg15_oncv/")
+        click_echo("  - ABACUS documentation: http://abacus.ustc.edu.cn/")
+        click_echo("=" * 70)
+        
+        raise ValueError(
+            f"Unsupported elements: {', '.join(unsupported_elements)}. "
+            f"Only {len(supported_elements)} elements are supported by {potential_name}."
+        )
+    
+    click_echo(f"[INFO] All elements are supported: {', '.join(sorted(set(stru.get_chemical_symbols())))}")
     
     # 处理需要电荷密度的阶段（Band/Dos）
     if stage.lower() in ['band', 'dos']:
@@ -132,6 +230,10 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
                   gamma_only=0)
     
     # 检查自旋设置
+    # 优先使用模板中的 nspin 值
+    template_nspin = stage_params.get('nspin', None)
+    
+    # 如果模板中没有设置，则根据 SPIN_ON/SPIN_OFF 文件决定
     default_nspin = 2
     if stage.lower() != 'test_spin':
         spin_on_file = work_dir.parent / 'SPIN_ON'
@@ -142,13 +244,58 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
         elif spin_on_file.exists():
             default_nspin = 2
     
+    # 如果模板中有 nspin 设置，使用模板的值（用户明确指定优先）
+    if template_nspin is not None:
+        default_nspin = template_nspin
+        click_echo(f"[INFO] Using nspin={template_nspin} from template")
+    
     # 计算 nbands
-    total_ne = get_total_valence_electrons(stru)
-    if default_nspin == 1:
-        nbands = int(max(total_ne / 2 * 1.2, total_ne / 2 + 4))
+    # 注意：对于 Test_spin, Coarse_relax, Relax, Scf 不设置 nbands
+    # 让 ABACUS 使用默认值更保险，只对 Band/Dos 手动设置
+    if stage.lower() in ['band', 'dos']:
+        # Band/Dos 需要更多能带以获得完整的能带结构/态密度
+        total_ne = get_total_valence_electrons(stru)
+        
+        # 尝试从 Scf 阶段读取 NLOCAL（基函数总数）
+        nlocal = get_nlocal_from_scf(work_dir)
+        
+        # 1. 计算占据能带数 (Occupied bands)
+        # 重要说明：nspin=2 时，NBANDS 是每个自旋通道的能带数，不需要翻倍！
+        # - nspin=1: 每个能带容纳 2 个电子 → occ_bands = total_ne / 2
+        # - nspin=2: 每个能带容纳 1 个电子 → occ_bands = total_ne
+        if default_nspin == 1:
+            occ_bands = total_ne / 2
+        else:
+            occ_bands = total_ne
+        
+        # 2. 增加冗余量 (Buffer) 用于观察空带
+        # 对于 LCAO 体系，冗余量不宜过大；+10 到 +20 足够
+        buffer = 20
+        nbands = int(occ_bands + buffer)
+        
+        # 3. 确保 nbands 至少是某个最小值（对于很小的体系）
+        nbands = max(nbands, 20)
+        
+        # 4. 【关键】LCAO 的硬性约束：nbands 必须 <= NLOCAL
+        # NLOCAL 是基函数总数，这是 LCAO 的物理上限
+        if nlocal is not None:
+            if nbands > nlocal:
+                click_echo(f"[WARNING] Calculated nbands={nbands} exceeds NLOCAL={nlocal} (LCAO limit)")
+                click_echo(f"[INFO] Adjusting nbands to {nlocal} (maximum for LCAO basis)")
+                nbands = nlocal
+            else:
+                click_echo(f"[INFO] nbands={nbands} is valid (NLOCAL={nlocal}, occupied={int(occ_bands)})")
+        else:
+            click_echo(f"[WARNING] Could not read NLOCAL from Scf/OUT.*/running*.log")
+            click_echo(f"[WARNING] Using nbands={nbands} (may fail if > NLOCAL for LCAO basis)")
+            click_echo(f"[WARNING] If you see 'NLOCAL < NBANDS' error, manually set nbands in yaml")
+        
+        input_obj.set(nbands=nbands)
+        click_echo(f"[INFO] Set nbands={nbands} for {stage} (electrons={total_ne}, nspin={default_nspin})")
     else:
-        nbands = int(max(total_ne * 1.2, total_ne + 4))
-    input_obj.set(nbands=nbands)
+        # Test_spin, Coarse_relax, Relax, Scf 不设置 nbands
+        # 让 ABACUS 自动计算，更安全
+        click_echo(f"[INFO] Using ABACUS default nbands for {stage}")
     
     # 应用模板参数
     if stage_params:
@@ -173,9 +320,12 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
         input_obj.set(init_chg=1)
         click_echo(f"[INFO] Set init_chg=1 for {stage} calculation")
     
-    # 覆盖 nspin
-    if stage.lower() != 'test_spin':
+    # 设置 nspin（只有在模板中没有明确指定时才使用 default_nspin）
+    # 如果模板中已经有 nspin，上面 input_obj.set(**stage_params) 已经设置过了
+    # 这里只处理模板中没有 nspin 的情况
+    if template_nspin is None and stage.lower() != 'test_spin':
         input_obj.set(nspin=default_nspin)
+        click_echo(f"[INFO] Using nspin={default_nspin} (auto-detected from SPIN_ON/SPIN_OFF or default)")
     
     # Band 计算设置 symmetry=0
     stage_workflow_config = workflow.get(stage, {})
@@ -224,7 +374,18 @@ Line
         shutil.copy2(optimized_stru_path, work_dir / 'STRU')
         click_echo(f"[INFO] Copied optimized STRU from previous stage")
     else:
+        # 检测是否需要 FR 赝势（SOC 计算）
+        need_fr = False
+        lspinorb_value = stage_params.get('lspinorb', 0)
+        if isinstance(lspinorb_value, str):
+            lspinorb_value = int(lspinorb_value)
+        if lspinorb_value == 1:
+            need_fr = True
+            click_echo(f"[INFO] SOC calculation detected (lspinorb=1), will use FR pseudopotentials")
+        
         # 其他阶段正常生成 STRU
+        # 注意：potential_name='PotSG15' 用于静态字典回退
+        # 如果是动态目录，会自动使用 pick_upf 选择最佳版本
         write_input_stru(stru=stru,
                         pseudo_dir=POTPATH,
                         basis_dir=ORBPATH,
@@ -233,5 +394,6 @@ Line
                         coordinates_type='Direct',
                         spin=default_nspin,
                         filename='STRU',
-                        copy_files=False)
+                        copy_files=False,
+                        need_fr=need_fr)
 

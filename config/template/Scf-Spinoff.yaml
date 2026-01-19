@@ -8,8 +8,7 @@ smearing_method: gaussian
 smearing_sigma: 0.02
 mixing_type: broyden
 mixing_beta: 0.4
-nspin: 4
-lspinorb: 1
+nspin: 1
 symmetry: 1
 out_dm_npz: 1
 out_hsr_npz: 1

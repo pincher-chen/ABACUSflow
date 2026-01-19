@@ -1,4 +1,4 @@
-calculation: relax
+calculation: cell-relax
 basis_type: lcao
 ecutwfc: 100
 scf_thr: 1.0e-8
@@ -6,7 +6,7 @@ scf_nmax: 10 #100
 relax_nmax: 10 #100
 force_thr_ev: 0.01
 stress_thr: 0.5
-relax_method: cg
+relax_method: bfgs #cg
 ks_solver: genelpa
 smearing_method: gaussian
 smearing_sigma: 0.02

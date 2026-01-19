@@ -6,6 +6,7 @@ CONDA_ENV = dftflow
 ABACUS_DIR = /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.1/bin3/bin
 ABACUS_EXE = abacus
 PSEUDO_POTENTIAL_DIR = /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/sg15oncv
+#/XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/PotSG15
 ORBITAL_DIR = /XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/OrbSG15std
 
 [STRU]
@@ -19,7 +20,7 @@ MODULES = intel/oneapi2023.2_noimpi mpi/mpich/4.1.2-icc-oneapi2023.2-ch4 elpa/20
 PARTITION = allsys --reservation=hpc_test
 NODES = 1
 CORES_PER_NODE = 88
-TOTAL_NODE = 950
+TOTAL_NODE = 1000
 MAX_JOBS = 1000
 INTERVAL_TIME = 0.5
 CHECK_TIME = 30

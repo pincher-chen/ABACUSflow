@@ -2,20 +2,22 @@
 
 自动化 ABACUS 第一性原理计算的工作流管理系统，支持完整的多阶段计算流程、实时监控和资源统计。
 
-##  主要特性
+## ✨ 主要特性
 
 - 🔄 **自动化工作流**: Test_spin → Coarse_relax → Relax → Scf → Band → Dos
 - 📊 **实时监控**: 支持 LCAO 和 PW 基组，实时显示离子步、电子步和收敛状态
 - ⏱️ **资源统计**: 自动记录每个阶段的运行时间和核时消耗
 - 🔗 **结构传递**: 自动使用上一阶段的优化结构
 - 🛠️ **智能重试**: 自动调整参数并重试未收敛的计算
+- 🚀 **自动提交**: ⭐ 支持大规模作业（10w+）自动提交到Slurm，智能资源管理
 - 📝 **模块化设计**: 清晰的代码结构，易于维护和扩展
 
-## 文件结构
+## 📂 文件结构
 
 ```
 abacusflow/
 ├── abacus.py                # 主入口：CLI 命令集合
+├── submit_jobs.py           # ⭐ 自动提交入口脚本
 ├── abacus/                  # 功能模块目录
 │   ├── generator.py         # 输入文件生成核心逻辑
 │   ├── stru_utils.py        # STRU 文件处理工具
@@ -23,11 +25,12 @@ abacusflow/
 │   ├── monitor.py           # 实时监控脚本（LCAO + PW）
 │   ├── kpoints_utils.py     # K点网格计算
 │   ├── submit.py            # 工作流脚本生成器
+│   ├── submit_manager.py    # ⭐ 自动提交管理器
 │   ├── create_input.py      # ABACUS 输入对象
 │   ├── potential.py         # 赝势管理
 │   └── basis.py             # 轨道基组管理
 ├── config/                  # 配置文件
-│   ├── condor.ini           # 集群配置
+│   ├── condor.ini           # 集群配置（含自动提交参数）
 │   ├── workflow.json        # 工作流配置
 │   └── template/            # 各阶段 YAML 模板
 │       ├── Test_spin.yaml
@@ -36,11 +39,14 @@ abacusflow/
 │       ├── Scf.yaml
 │       ├── Band.yaml
 │       └── Dos.yaml
-├── examples/InputPoscar/             # 输入结构文件（VASP POSCAR 格式）
-└── examples/work_cal/                # 计算工作目录（自动生成）
+├── doc/                     # 文档目录
+│   └── auto_submit.md       # ⭐ 自动提交系统设计文档
+├── logs/                    # 日志目录（自动生成）
+├── InputPoscar/             # 输入结构文件（VASP POSCAR 格式）
+└── work_cal/                # 计算工作目录（自动生成）
 ```
 
-## 快速开始
+## 🚀 快速开始
 
 ### 1. 环境要求
 
@@ -74,6 +80,8 @@ python abacus.py InputPoscar/ work_cal/ --workflow
 
 ### 3. 提交作业
 
+#### 手动提交（单个作业）
+
 ```bash
 # 进入工作目录
 cd work_cal/structure_name/
@@ -84,6 +92,35 @@ yhbatch structure_name.sh
 # 或直接运行（测试）
 bash structure_name.sh
 ```
+
+#### 自动提交（批量作业）⭐ 新功能
+
+适用于大规模批量计算（10w+作业），自动管理资源限制和提交队列：
+
+```bash
+# 自动提交work_cal7目录下的所有作业
+python submit_jobs.py work_cal7
+```
+
+**核心特性**：
+- ✅ 自动扫描并提交所有作业脚本
+- ✅ 智能监控Slurm队列状态，避免超出节点/任务限制
+- ✅ 间隔提交，降低调度器负载
+- ✅ 资源不足时自动等待
+- ✅ 失败自动重试
+- ✅ 详细日志记录
+
+**配置参数** (`config/condor.ini`):
+```ini
+[ALLOW]
+PARTITION = deimos        # Slurm分区
+TOTAL_NODE = 10          # 总节点数限制（最重要）
+MAX_JOBS = 1000          # 最大任务数限制
+INTERVAL_TIME = 0.5      # 提交间隔（秒）
+CHECK_TIME = 80          # 队列检查间隔（秒）
+```
+
+详细文档：[自动提交系统设计方案](doc/auto_submit.md)
 
 ### 4. 查看进度
 
@@ -117,7 +154,7 @@ cat work_cal/structure_name/stat.log
 python abacus.py summary --root work_cal/structure_name/
 ```
 
-##  CLI 命令详解
+## 🔧 CLI 命令详解
 
 ### workflow - 生成工作流
 
@@ -194,7 +231,7 @@ python abacus.py summary --root <dir>
 # 显示所有阶段的状态和统计信息
 ```
 
-##  工作流阶段详解
+## 📊 工作流阶段详解
 
 ### 结构传递链
 
@@ -223,7 +260,7 @@ Band/Dos (能带/态密度，使用 Scf 结构 + 电荷密度)
 5. **Band**: 能带结构（需要 Scf 的电荷密度）
 6. **Dos**: 态密度（需要 Scf 的电荷密度）
 
-##  时间和资源统计
+## 📈 时间和资源统计
 
 ### 实时统计
 
@@ -273,7 +310,7 @@ Coarse_relax|2850|1|16|12.67|success
 ...
 ```
 
-##  实时监控说明
+## 🎯 实时监控说明
 
 ### 监控信息
 
@@ -297,7 +334,7 @@ Coarse_relax|2850|1|16|12.67|success
 - **LCAO**: 局域轨道基组（详细信息在 `OUT.*/running_*.log`）
 - **PW**: 平面波基组（详细信息在标准输出）
 
-##  智能重试机制
+## 🔄 智能重试机制
 
 ### 多次尝试
 
@@ -327,7 +364,7 @@ Coarse_relax|2850|1|16|12.67|success
 - **ignore.txt 存在**: 允许未收敛继续（需要在 workflow.json 中设置）
 - **converge.txt 存在**: 成功，进入下一阶段
 
-##  配置文件说明
+## ⚙️ 配置文件说明
 
 ### condor.ini
 
@@ -372,7 +409,7 @@ out_stru: 1
 ...
 ```
 
-##  最近更新
+## 📚 最近更新
 
 ### v2.0 (2025-12-24)
 
@@ -389,7 +426,7 @@ out_stru: 1
 - ✅ 清理冗余代码（~700MB）
 - ✅ 优化代码结构
 
-##  故障排查
+## 🐛 故障排查
 
 ### 常见问题
 
@@ -421,4 +458,12 @@ cd work_cal/structure_name/Scf
 python /path/to/abacus.py generate --work_dir . --stage Scf
 ```
 
+## 📞 支持
 
+- 文档: `doc/` 目录
+- 示例: `InputPoscar/` 目录
+- 配置模板: `config/template/` 目录
+
+## 📄 许可证
+
+详见 LICENSE 文件。

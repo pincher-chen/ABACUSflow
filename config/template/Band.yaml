@@ -8,4 +8,5 @@ nspin: 2
 symmetry: 0
 init_chg: 1
 out_band: 1
+out_bandgap: 1
 # nbands 将由脚本动态计算

@@ -1,7 +1,7 @@
 {
   "Test_spin": {
     "node": 1,
-    "core": 16,
+    "core": 32,
     "try_num": 2,
     "template": "Test_spin",
     "kval": [0.04, 0.04],
@@ -10,7 +10,7 @@
   },
   "Coarse_relax": {
     "node": 1,
-    "core": 16,
+    "core": 32,
     "try_num": 2,
     "parent": "Test_spin",
     "template": "Coarse_relax",
@@ -20,18 +20,17 @@
   },
   "Relax": {
     "node": 1,
-    "core": 16,
+    "core": 32,
     "try_num": 3,
     "parent": "Coarse_relax",
     "parent_files": ["STRU_ION_D"],
     "template": "Relax",
     "kval": [0.04, 0.02, 0.02],
-    "ignore_error": "True", 
     "comment": "Fine relax with increasing K-density (0.04→0.03→0.02), generates final STRU_ION_D"
   },
   "Scf": {
     "node": 1,
-    "core": 16,
+    "core": 32,
     "try_num": 2,
     "parent": "Relax",
     "parent_files": ["STRU_ION_D"],
@@ -41,7 +40,7 @@
   },
   "Band": {
     "node": 1,
-    "core":16,
+    "core":32,
     "try_num": 2,
     "parent": "Scf",
     "parent_files": ["STRU_ION_D", "SPIN1_CHG.cube", "SPIN2_CHG.cube"],
@@ -53,7 +52,7 @@
   },
   "Dos": {
     "node": 1,
-    "core": 16,
+    "core": 32,
     "try_num": 2,
     "parent": "Scf",
     "parent_files": ["STRU_ION_D", "SPIN1_CHG.cube", "SPIN2_CHG.cube"],

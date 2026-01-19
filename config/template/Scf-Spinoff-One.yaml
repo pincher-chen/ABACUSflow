@@ -2,14 +2,13 @@ calculation: scf
 basis_type: lcao
 ecutwfc: 120
 scf_thr: 1.0e-6
-scf_nmax: 100
+scf_nmax: 1
 ks_solver: genelpa
 smearing_method: gaussian
 smearing_sigma: 0.02
 mixing_type: broyden
 mixing_beta: 0.4
-nspin: 4
-lspinorb: 1
+nspin: 1
 symmetry: 1
 out_dm_npz: 1
 out_hsr_npz: 1
