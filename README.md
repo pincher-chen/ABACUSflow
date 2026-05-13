@@ -2,7 +2,7 @@
 
 自动化 ABACUS 第一性原理计算的工作流管理系统，支持完整的多阶段计算流程、实时监控和资源统计。
 
-## 主要特性
+## ✨ 主要特性
 
 - 🔄 **自动化工作流**: Test_spin → Coarse_relax → Relax → Scf → Band → Dos
 - 📊 **实时监控**: 支持 LCAO 和 PW 基组，实时显示离子步、电子步和收敛状态
@@ -12,7 +12,7 @@
 - 🚀 **自动提交**: ⭐ 支持大规模作业（10w+）自动提交到Slurm，智能资源管理
 - 📝 **模块化设计**: 清晰的代码结构，易于维护和扩展
 
-## 文件结构
+## 📂 文件结构
 
 ```
 abacusflow/
@@ -61,7 +61,7 @@ conda activate dftflow
 - NumPy
 ```
 
-### 2. 生成工作流或指定工作流中的特定步进行计算
+### 2. 生成工作流
 
 ```bash
 # 方式1：使用新格式（推荐）
@@ -69,10 +69,6 @@ python abacus.py workflow InputPoscar/ work_cal/
 
 # 方式2：使用旧格式（向后兼容）
 python abacus.py InputPoscar/ work_cal/ --workflow
-
-# 指定特定流程步进行计算
-python abacus.py single workflow InputPoscar/ work_cal/ -t Scf -k 0.02
-
 ```
 
 生成的脚本包含：
@@ -81,8 +77,6 @@ python abacus.py single workflow InputPoscar/ work_cal/ -t Scf -k 0.02
 - 实时监控
 - 时间和资源统计
 - 智能错误处理和重试
-
-
 
 ### 3. 提交作业
 
@@ -237,7 +231,7 @@ python abacus.py summary --root <dir>
 # 显示所有阶段的状态和统计信息
 ```
 
-## 工作流阶段详解
+## 📊 工作流阶段详解
 
 ### 结构传递链
 
@@ -316,7 +310,7 @@ Coarse_relax|2850|1|16|12.67|success
 ...
 ```
 
-##  实时监控说明
+## 🎯 实时监控说明
 
 ### 监控信息
 
@@ -465,4 +459,3 @@ python /path/to/abacus.py generate --work_dir . --stage Scf
 ```
 
 
-详见 LICENSE 文件。

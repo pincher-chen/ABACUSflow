@@ -1,0 +1,28 @@
+2026-01-01 22:43:37,171 - AutoSubmitter - INFO - ======================================================================
+2026-01-01 22:43:37,172 - AutoSubmitter - INFO - Slurm 自动提交器启动
+2026-01-01 22:43:37,172 - AutoSubmitter - INFO - ======================================================================
+2026-01-01 22:43:37,172 - AutoSubmitter - INFO - 工作目录: batch_work_test_single/
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 分区: allsys --reservation=hpc_test
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 节点限制: 200
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 任务限制: 1000
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 提交间隔: 0.5秒
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 检查间隔: 8.0秒
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 模式: 单步计算脚本提交 (*_single.sh)
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - ======================================================================
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO - 扫描作业脚本: batch_work_test_single/
+2026-01-01 22:43:37,173 - AutoSubmitter - INFO -   模式: 单步计算脚本 (*_single.sh)
+2026-01-01 22:43:37,184 - AutoSubmitter - INFO - 找到 6 个脚本文件
+2026-01-01 22:43:37,192 - AutoSubmitter - INFO - 队列中共有 6 个作业待提交
+2026-01-01 22:43:37,212 - AutoSubmitter - INFO - 队列状态 - 总任务:9, 运行中:9, 使用节点:9/200, 待提交:6
+2026-01-01 22:43:37,244 - AutoSubmitter - INFO - 作业已提交: hmat_113 (ID: 10219)
+2026-01-01 22:43:37,780 - AutoSubmitter - INFO - 作业已提交: hmat_103 (ID: 10220)
+2026-01-01 22:43:38,311 - AutoSubmitter - INFO - 作业已提交: hmat_106 (ID: 10221)
+2026-01-01 22:43:38,847 - AutoSubmitter - INFO - 作业已提交: hmat_109 (ID: 10222)
+2026-01-01 22:43:39,379 - AutoSubmitter - INFO - 作业已提交: hmat_0 (ID: 10223)
+2026-01-01 22:43:39,912 - AutoSubmitter - INFO - 作业已提交: hmat_107 (ID: 10224)
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO - ======================================================================
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO - 提交完成统计:
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO -   成功提交: 6
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO -   待提交: 0
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO -   失败: 0
+2026-01-01 22:43:40,413 - AutoSubmitter - INFO - ======================================================================

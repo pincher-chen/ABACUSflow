@@ -1,0 +1,389 @@
+2025-12-29 17:56:01,658 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - Slurm 自动提交器启动
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 工作目录: batch_work2/
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 分区: allsys --reservation=hpc_test
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 节点限制: 15
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 任务限制: 1000
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 提交间隔: 0.5秒
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 检查间隔: 8.0秒
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 17:56:01,659 - AutoSubmitter - INFO - 扫描作业脚本: batch_work2/
+2025-12-29 17:56:01,819 - AutoSubmitter - INFO - 找到 100 个脚本文件
+2025-12-29 17:56:01,920 - AutoSubmitter - INFO - 队列中共有 100 个作业待提交
+2025-12-29 17:56:01,943 - AutoSubmitter - INFO - 队列状态 - 总任务:1, 运行中:1, 使用节点:1/15, 待提交:100
+2025-12-29 17:56:01,976 - AutoSubmitter - ERROR - 作业 hmat_2113 提交失败: returncode=1
+2025-12-29 17:56:01,976 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2113 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2113/hmat_2113.sh
+2025-12-29 17:56:01,977 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:01,977 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:01,977 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2113, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:02,508 - AutoSubmitter - ERROR - 作业 hmat_113 提交失败: returncode=1
+2025-12-29 17:56:02,508 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_113 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_113/hmat_113.sh
+2025-12-29 17:56:02,508 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:02,508 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:02,508 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_113, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:03,034 - AutoSubmitter - ERROR - 作业 hmat_2213 提交失败: returncode=1
+2025-12-29 17:56:03,034 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2213 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2213/hmat_2213.sh
+2025-12-29 17:56:03,034 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:03,034 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:03,034 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2213, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:03,561 - AutoSubmitter - ERROR - 作业 hmat_2056 提交失败: returncode=1
+2025-12-29 17:56:03,561 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2056 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2056/hmat_2056.sh
+2025-12-29 17:56:03,561 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:03,561 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:03,561 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2056, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:04,090 - AutoSubmitter - ERROR - 作业 hmat_155 提交失败: returncode=1
+2025-12-29 17:56:04,091 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_155 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_155/hmat_155.sh
+2025-12-29 17:56:04,091 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:04,091 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:04,091 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_155, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:04,618 - AutoSubmitter - ERROR - 作业 hmat_16 提交失败: returncode=1
+2025-12-29 17:56:04,619 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_16 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_16/hmat_16.sh
+2025-12-29 17:56:04,619 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:04,619 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:04,619 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_16, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:05,147 - AutoSubmitter - ERROR - 作业 hmat_103 提交失败: returncode=1
+2025-12-29 17:56:05,147 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_103 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_103/hmat_103.sh
+2025-12-29 17:56:05,147 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:05,147 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:05,148 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_103, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:05,677 - AutoSubmitter - ERROR - 作业 hmat_2083 提交失败: returncode=1
+2025-12-29 17:56:05,677 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2083 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2083/hmat_2083.sh
+2025-12-29 17:56:05,677 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:05,677 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:05,677 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2083, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:06,206 - AutoSubmitter - ERROR - 作业 hmat_2160 提交失败: returncode=1
+2025-12-29 17:56:06,207 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2160 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2160/hmat_2160.sh
+2025-12-29 17:56:06,207 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:06,207 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:06,207 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2160, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:06,737 - AutoSubmitter - ERROR - 作业 hmat_18 提交失败: returncode=1
+2025-12-29 17:56:06,738 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_18 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_18/hmat_18.sh
+2025-12-29 17:56:06,738 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:06,738 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:06,738 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_18, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:07,261 - AutoSubmitter - ERROR - 作业 hmat_12 提交失败: returncode=1
+2025-12-29 17:56:07,261 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_12 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_12/hmat_12.sh
+2025-12-29 17:56:07,261 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:07,262 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:07,262 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_12, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:07,790 - AutoSubmitter - ERROR - 作业 hmat_2200 提交失败: returncode=1
+2025-12-29 17:56:07,790 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2200 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2200/hmat_2200.sh
+2025-12-29 17:56:07,790 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:07,790 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:07,790 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2200, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:08,316 - AutoSubmitter - ERROR - 作业 hmat_106 提交失败: returncode=1
+2025-12-29 17:56:08,316 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_106 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_106/hmat_106.sh
+2025-12-29 17:56:08,316 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:08,316 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:08,316 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_106, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:08,846 - AutoSubmitter - ERROR - 作业 hmat_2158 提交失败: returncode=1
+2025-12-29 17:56:08,846 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2158 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2158/hmat_2158.sh
+2025-12-29 17:56:08,846 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:08,846 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:08,846 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2158, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:09,366 - AutoSubmitter - ERROR - 作业 hmat_2089 提交失败: returncode=1
+2025-12-29 17:56:09,366 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2089 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2089/hmat_2089.sh
+2025-12-29 17:56:09,366 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:09,367 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:09,367 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2089, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:09,896 - AutoSubmitter - ERROR - 作业 hmat_2125 提交失败: returncode=1
+2025-12-29 17:56:09,896 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2125 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2125/hmat_2125.sh
+2025-12-29 17:56:09,896 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:09,896 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:09,896 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2125, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:10,411 - AutoSubmitter - INFO - 队列状态 - 总任务:1, 运行中:1, 使用节点:1/15, 待提交:100
+2025-12-29 17:56:10,436 - AutoSubmitter - ERROR - 作业 hmat_2020 提交失败: returncode=1
+2025-12-29 17:56:10,436 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2020 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2020/hmat_2020.sh
+2025-12-29 17:56:10,436 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:10,436 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:10,436 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2020, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:10,964 - AutoSubmitter - ERROR - 作业 hmat_2155 提交失败: returncode=1
+2025-12-29 17:56:10,965 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2155 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2155/hmat_2155.sh
+2025-12-29 17:56:10,965 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:10,965 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:10,965 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2155, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:11,485 - AutoSubmitter - ERROR - 作业 hmat_2057 提交失败: returncode=1
+2025-12-29 17:56:11,486 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2057 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2057/hmat_2057.sh
+2025-12-29 17:56:11,486 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:11,486 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:11,486 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2057, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:12,011 - AutoSubmitter - ERROR - 作业 hmat_2117 提交失败: returncode=1
+2025-12-29 17:56:12,012 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2117 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2117/hmat_2117.sh
+2025-12-29 17:56:12,012 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:12,012 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:12,012 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2117, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:12,537 - AutoSubmitter - ERROR - 作业 hmat_2045 提交失败: returncode=1
+2025-12-29 17:56:12,537 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2045 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2045/hmat_2045.sh
+2025-12-29 17:56:12,537 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:12,537 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:12,537 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2045, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:13,067 - AutoSubmitter - ERROR - 作业 hmat_164 提交失败: returncode=1
+2025-12-29 17:56:13,067 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_164 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_164/hmat_164.sh
+2025-12-29 17:56:13,067 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:13,067 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:13,068 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_164, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:13,593 - AutoSubmitter - ERROR - 作业 hmat_2170 提交失败: returncode=1
+2025-12-29 17:56:13,593 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2170 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2170/hmat_2170.sh
+2025-12-29 17:56:13,594 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:13,594 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:13,594 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2170, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:14,114 - AutoSubmitter - ERROR - 作业 hmat_2225 提交失败: returncode=1
+2025-12-29 17:56:14,114 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2225 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2225/hmat_2225.sh
+2025-12-29 17:56:14,114 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:14,114 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:14,114 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2225, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:14,639 - AutoSubmitter - ERROR - 作业 hmat_109 提交失败: returncode=1
+2025-12-29 17:56:14,640 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_109 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_109/hmat_109.sh
+2025-12-29 17:56:14,640 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:14,640 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:14,640 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_109, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:15,157 - AutoSubmitter - ERROR - 作业 hmat_2097 提交失败: returncode=1
+2025-12-29 17:56:15,158 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2097 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2097/hmat_2097.sh
+2025-12-29 17:56:15,158 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:15,158 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:15,158 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2097, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:15,681 - AutoSubmitter - ERROR - 作业 hmat_2073 提交失败: returncode=1
+2025-12-29 17:56:15,681 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2073 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2073/hmat_2073.sh
+2025-12-29 17:56:15,681 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:15,681 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:15,681 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2073, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:16,211 - AutoSubmitter - ERROR - 作业 hmat_2077 提交失败: returncode=1
+2025-12-29 17:56:16,211 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2077 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2077/hmat_2077.sh
+2025-12-29 17:56:16,211 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:16,211 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:16,211 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2077, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:16,738 - AutoSubmitter - ERROR - 作业 hmat_152 提交失败: returncode=1
+2025-12-29 17:56:16,739 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_152 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_152/hmat_152.sh
+2025-12-29 17:56:16,739 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:16,739 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:16,739 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_152, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:17,266 - AutoSubmitter - ERROR - 作业 hmat_2151 提交失败: returncode=1
+2025-12-29 17:56:17,266 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2151 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2151/hmat_2151.sh
+2025-12-29 17:56:17,266 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:17,266 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:17,266 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2151, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:17,794 - AutoSubmitter - ERROR - 作业 hmat_2136 提交失败: returncode=1
+2025-12-29 17:56:17,795 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2136 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2136/hmat_2136.sh
+2025-12-29 17:56:17,795 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:17,795 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:17,795 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2136, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:18,322 - AutoSubmitter - ERROR - 作业 hmat_136 提交失败: returncode=1
+2025-12-29 17:56:18,323 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_136 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_136/hmat_136.sh
+2025-12-29 17:56:18,323 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:18,323 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:18,323 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_136, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:18,840 - AutoSubmitter - INFO - 队列状态 - 总任务:1, 运行中:1, 使用节点:1/15, 待提交:100
+2025-12-29 17:56:18,866 - AutoSubmitter - ERROR - 作业 hmat_2174 提交失败: returncode=1
+2025-12-29 17:56:18,867 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2174 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2174/hmat_2174.sh
+2025-12-29 17:56:18,867 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:18,867 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:18,867 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2174, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:19,395 - AutoSubmitter - ERROR - 作业 hmat_132 提交失败: returncode=1
+2025-12-29 17:56:19,395 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_132 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_132/hmat_132.sh
+2025-12-29 17:56:19,395 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:19,395 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:19,395 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_132, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:19,922 - AutoSubmitter - ERROR - 作业 hmat_2199 提交失败: returncode=1
+2025-12-29 17:56:19,922 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2199 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2199/hmat_2199.sh
+2025-12-29 17:56:19,922 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:19,922 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:19,922 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2199, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:20,451 - AutoSubmitter - ERROR - 作业 hmat_2126 提交失败: returncode=1
+2025-12-29 17:56:20,452 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2126 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2126/hmat_2126.sh
+2025-12-29 17:56:20,452 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:20,452 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:20,452 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2126, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:20,979 - AutoSubmitter - ERROR - 作业 hmat_117 提交失败: returncode=1
+2025-12-29 17:56:20,979 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_117 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_117/hmat_117.sh
+2025-12-29 17:56:20,979 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:20,979 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:20,980 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_117, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:21,508 - AutoSubmitter - ERROR - 作业 hmat_138 提交失败: returncode=1
+2025-12-29 17:56:21,508 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_138 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_138/hmat_138.sh
+2025-12-29 17:56:21,508 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:21,508 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:21,509 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_138, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:22,037 - AutoSubmitter - ERROR - 作业 hmat_2127 提交失败: returncode=1
+2025-12-29 17:56:22,038 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2127 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2127/hmat_2127.sh
+2025-12-29 17:56:22,038 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:22,038 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:22,038 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2127, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:22,569 - AutoSubmitter - ERROR - 作业 hmat_2184 提交失败: returncode=1
+2025-12-29 17:56:22,569 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2184 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2184/hmat_2184.sh
+2025-12-29 17:56:22,569 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:22,569 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:22,569 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2184, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:23,096 - AutoSubmitter - ERROR - 作业 hmat_2010 提交失败: returncode=1
+2025-12-29 17:56:23,096 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2010 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2010/hmat_2010.sh
+2025-12-29 17:56:23,096 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:23,096 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:23,096 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2010, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:23,623 - AutoSubmitter - ERROR - 作业 hmat_2214 提交失败: returncode=1
+2025-12-29 17:56:23,623 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2214 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2214/hmat_2214.sh
+2025-12-29 17:56:23,623 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:23,623 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:23,623 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2214, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:24,147 - AutoSubmitter - ERROR - 作业 hmat_2042 提交失败: returncode=1
+2025-12-29 17:56:24,147 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2042 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2042/hmat_2042.sh
+2025-12-29 17:56:24,147 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:24,147 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:24,147 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2042, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:24,674 - AutoSubmitter - ERROR - 作业 hmat_2189 提交失败: returncode=1
+2025-12-29 17:56:24,674 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2189 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2189/hmat_2189.sh
+2025-12-29 17:56:24,674 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:24,674 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:24,675 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2189, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:25,197 - AutoSubmitter - ERROR - 作业 hmat_2209 提交失败: returncode=1
+2025-12-29 17:56:25,197 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2209 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2209/hmat_2209.sh
+2025-12-29 17:56:25,198 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:25,198 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:25,198 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2209, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:25,724 - AutoSubmitter - ERROR - 作业 hmat_2121 提交失败: returncode=1
+2025-12-29 17:56:25,724 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2121 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2121/hmat_2121.sh
+2025-12-29 17:56:25,725 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:25,725 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:25,725 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2121, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:26,254 - AutoSubmitter - ERROR - 作业 hmat_2135 提交失败: returncode=1
+2025-12-29 17:56:26,254 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2135 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2135/hmat_2135.sh
+2025-12-29 17:56:26,254 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:26,254 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:26,254 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2135, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:26,774 - AutoSubmitter - ERROR - 作业 hmat_2197 提交失败: returncode=1
+2025-12-29 17:56:26,775 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2197 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2197/hmat_2197.sh
+2025-12-29 17:56:26,775 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:26,775 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:26,775 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2197, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:27,292 - AutoSubmitter - INFO - 队列状态 - 总任务:1, 运行中:1, 使用节点:1/15, 待提交:100
+2025-12-29 17:56:27,317 - AutoSubmitter - ERROR - 作业 hmat_148 提交失败: returncode=1
+2025-12-29 17:56:27,317 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_148 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_148/hmat_148.sh
+2025-12-29 17:56:27,318 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:27,318 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:27,318 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_148, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:27,848 - AutoSubmitter - ERROR - 作业 hmat_2190 提交失败: returncode=1
+2025-12-29 17:56:27,848 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2190 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2190/hmat_2190.sh
+2025-12-29 17:56:27,848 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:27,848 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:27,848 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2190, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:28,377 - AutoSubmitter - ERROR - 作业 hmat_2093 提交失败: returncode=1
+2025-12-29 17:56:28,377 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2093 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2093/hmat_2093.sh
+2025-12-29 17:56:28,377 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:28,377 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:28,377 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2093, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:28,898 - AutoSubmitter - ERROR - 作业 hmat_2025 提交失败: returncode=1
+2025-12-29 17:56:28,898 - AutoSubmitter - ERROR -   命令: sbatch -N 1 -p allsys --reservation=hpc_test --job-name hmat_2025 /XYFS02/HDD_POOL/nscc-gz_pinchen/nscc-gz_pinchen_1/sf_box/abacusflow/batch_work2/hmat_2025/hmat_2025.sh
+2025-12-29 17:56:28,898 - AutoSubmitter - ERROR -   标准输出: 
+2025-12-29 17:56:28,898 - AutoSubmitter - ERROR -   标准错误: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job submission failed: Invalid partition name specified
+2025-12-29 17:56:28,898 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2025, 原因: sbatch: error: invalid partition specified: allsys --reservation=hpc_test
+sbatch: error: Batch job s
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO - 
+用户中断，正在停止...
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO - 提交完成统计:
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO -   成功提交: 0
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO -   待提交: 100
+2025-12-29 17:56:29,149 - AutoSubmitter - INFO -   失败: 0
+2025-12-29 17:56:29,150 - AutoSubmitter - INFO - ======================================================================

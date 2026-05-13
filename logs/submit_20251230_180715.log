@@ -1,0 +1,149 @@
+2025-12-30 18:07:15,862 - AutoSubmitter - INFO - ======================================================================
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - Slurm 自动提交器启动
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - ======================================================================
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 工作目录: batch_work4/
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 分区: allsys --reservation=hpc_test
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 节点限制: 100
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 任务限制: 1000
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 提交间隔: 0.5秒
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 检查间隔: 8.0秒
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - ======================================================================
+2025-12-30 18:07:15,863 - AutoSubmitter - INFO - 扫描作业脚本: batch_work4/
+2025-12-30 18:07:16,012 - AutoSubmitter - INFO - 找到 100 个脚本文件
+2025-12-30 18:07:16,086 - AutoSubmitter - INFO - 队列中共有 100 个作业待提交
+2025-12-30 18:07:16,145 - AutoSubmitter - INFO - 队列状态 - 总任务:21, 运行中:21, 使用节点:21/100, 待提交:100
+2025-12-30 18:07:16,233 - AutoSubmitter - INFO - 作业已提交: hmat_2113 (ID: 10043)
+2025-12-30 18:07:16,826 - AutoSubmitter - INFO - 作业已提交: hmat_113 (ID: 10044)
+2025-12-30 18:07:17,412 - AutoSubmitter - INFO - 作业已提交: hmat_2213 (ID: 10045)
+2025-12-30 18:07:17,998 - AutoSubmitter - INFO - 作业已提交: hmat_2056 (ID: 10046)
+2025-12-30 18:07:18,581 - AutoSubmitter - INFO - 作业已提交: hmat_155 (ID: 10047)
+2025-12-30 18:07:19,157 - AutoSubmitter - INFO - 作业已提交: hmat_16 (ID: 10048)
+2025-12-30 18:07:19,742 - AutoSubmitter - INFO - 作业已提交: hmat_103 (ID: 10049)
+2025-12-30 18:07:20,327 - AutoSubmitter - INFO - 作业已提交: hmat_2083 (ID: 10050)
+2025-12-30 18:07:20,917 - AutoSubmitter - INFO - 作业已提交: hmat_2160 (ID: 10051)
+2025-12-30 18:07:21,510 - AutoSubmitter - INFO - 作业已提交: hmat_18 (ID: 10052)
+2025-12-30 18:07:22,105 - AutoSubmitter - INFO - 作业已提交: hmat_12 (ID: 10053)
+2025-12-30 18:07:22,695 - AutoSubmitter - INFO - 作业已提交: hmat_2200 (ID: 10054)
+2025-12-30 18:07:23,282 - AutoSubmitter - INFO - 作业已提交: hmat_106 (ID: 10055)
+2025-12-30 18:07:23,871 - AutoSubmitter - INFO - 作业已提交: hmat_2158 (ID: 10056)
+2025-12-30 18:07:24,421 - AutoSubmitter - INFO - 队列状态 - 总任务:35, 运行中:31, 使用节点:31/100, 待提交:86
+2025-12-30 18:07:24,508 - AutoSubmitter - INFO - 作业已提交: hmat_2089 (ID: 10057)
+2025-12-30 18:07:25,096 - AutoSubmitter - INFO - 作业已提交: hmat_2125 (ID: 10058)
+2025-12-30 18:07:25,678 - AutoSubmitter - INFO - 作业已提交: hmat_2020 (ID: 10059)
+2025-12-30 18:07:26,264 - AutoSubmitter - INFO - 作业已提交: hmat_2155 (ID: 10060)
+2025-12-30 18:07:26,850 - AutoSubmitter - INFO - 作业已提交: hmat_2057 (ID: 10061)
+2025-12-30 18:07:27,440 - AutoSubmitter - INFO - 作业已提交: hmat_2117 (ID: 10062)
+2025-12-30 18:07:28,022 - AutoSubmitter - INFO - 作业已提交: hmat_2045 (ID: 10063)
+2025-12-30 18:07:28,606 - AutoSubmitter - INFO - 作业已提交: hmat_164 (ID: 10064)
+2025-12-30 18:07:29,190 - AutoSubmitter - INFO - 作业已提交: hmat_2170 (ID: 10065)
+2025-12-30 18:07:29,776 - AutoSubmitter - INFO - 作业已提交: hmat_2225 (ID: 10066)
+2025-12-30 18:07:30,363 - AutoSubmitter - INFO - 作业已提交: hmat_109 (ID: 10067)
+2025-12-30 18:07:30,949 - AutoSubmitter - INFO - 作业已提交: hmat_2097 (ID: 10068)
+2025-12-30 18:07:31,545 - AutoSubmitter - INFO - 作业已提交: hmat_2073 (ID: 10069)
+2025-12-30 18:07:32,129 - AutoSubmitter - INFO - 作业已提交: hmat_2077 (ID: 10070)
+2025-12-30 18:07:32,679 - AutoSubmitter - INFO - 队列状态 - 总任务:49, 运行中:47, 使用节点:47/100, 待提交:72
+2025-12-30 18:07:32,766 - AutoSubmitter - INFO - 作业已提交: hmat_152 (ID: 10071)
+2025-12-30 18:07:33,352 - AutoSubmitter - INFO - 作业已提交: hmat_2151 (ID: 10072)
+2025-12-30 18:07:33,934 - AutoSubmitter - INFO - 作业已提交: hmat_2136 (ID: 10073)
+2025-12-30 18:07:34,510 - AutoSubmitter - INFO - 作业已提交: hmat_136 (ID: 10074)
+2025-12-30 18:07:35,091 - AutoSubmitter - INFO - 作业已提交: hmat_2174 (ID: 10075)
+2025-12-30 18:07:35,676 - AutoSubmitter - INFO - 作业已提交: hmat_132 (ID: 10076)
+2025-12-30 18:07:36,261 - AutoSubmitter - INFO - 作业已提交: hmat_2199 (ID: 10077)
+2025-12-30 18:07:36,847 - AutoSubmitter - INFO - 作业已提交: hmat_2126 (ID: 10078)
+2025-12-30 18:07:37,436 - AutoSubmitter - INFO - 作业已提交: hmat_117 (ID: 10079)
+2025-12-30 18:07:38,028 - AutoSubmitter - INFO - 作业已提交: hmat_138 (ID: 10080)
+2025-12-30 18:07:38,617 - AutoSubmitter - INFO - 作业已提交: hmat_2127 (ID: 10081)
+2025-12-30 18:07:39,203 - AutoSubmitter - INFO - 作业已提交: hmat_2184 (ID: 10082)
+2025-12-30 18:07:39,787 - AutoSubmitter - INFO - 作业已提交: hmat_2010 (ID: 10083)
+2025-12-30 18:07:40,370 - AutoSubmitter - INFO - 作业已提交: hmat_2214 (ID: 10084)
+2025-12-30 18:07:40,922 - AutoSubmitter - INFO - 队列状态 - 总任务:63, 运行中:62, 使用节点:62/100, 待提交:58
+2025-12-30 18:07:41,002 - AutoSubmitter - INFO - 作业已提交: hmat_2042 (ID: 10085)
+2025-12-30 18:07:41,590 - AutoSubmitter - INFO - 作业已提交: hmat_2189 (ID: 10086)
+2025-12-30 18:07:42,183 - AutoSubmitter - INFO - 作业已提交: hmat_2209 (ID: 10087)
+2025-12-30 18:07:42,766 - AutoSubmitter - INFO - 作业已提交: hmat_2121 (ID: 10088)
+2025-12-30 18:07:43,351 - AutoSubmitter - INFO - 作业已提交: hmat_2135 (ID: 10089)
+2025-12-30 18:07:43,934 - AutoSubmitter - INFO - 作业已提交: hmat_2197 (ID: 10090)
+2025-12-30 18:07:44,519 - AutoSubmitter - INFO - 作业已提交: hmat_148 (ID: 10091)
+2025-12-30 18:07:45,108 - AutoSubmitter - INFO - 作业已提交: hmat_2190 (ID: 10092)
+2025-12-30 18:07:45,694 - AutoSubmitter - INFO - 作业已提交: hmat_2093 (ID: 10093)
+2025-12-30 18:07:46,279 - AutoSubmitter - INFO - 作业已提交: hmat_2025 (ID: 10094)
+2025-12-30 18:07:46,870 - AutoSubmitter - INFO - 作业已提交: hmat_0 (ID: 10095)
+2025-12-30 18:07:47,458 - AutoSubmitter - INFO - 作业已提交: hmat_2150 (ID: 10096)
+2025-12-30 18:07:48,050 - AutoSubmitter - INFO - 作业已提交: hmat_2107 (ID: 10097)
+2025-12-30 18:07:48,637 - AutoSubmitter - INFO - 作业已提交: hmat_2028 (ID: 10098)
+2025-12-30 18:07:49,194 - AutoSubmitter - INFO - 队列状态 - 总任务:76, 运行中:76, 使用节点:76/100, 待提交:44
+2025-12-30 18:07:49,278 - AutoSubmitter - INFO - 作业已提交: hmat_158 (ID: 10099)
+2025-12-30 18:07:49,869 - AutoSubmitter - INFO - 作业已提交: hmat_2070 (ID: 10100)
+2025-12-30 18:07:50,458 - AutoSubmitter - INFO - 作业已提交: hmat_171 (ID: 10101)
+2025-12-30 18:07:51,049 - AutoSubmitter - INFO - 作业已提交: hmat_2074 (ID: 10102)
+2025-12-30 18:07:51,641 - AutoSubmitter - INFO - 作业已提交: hmat_2104 (ID: 10103)
+2025-12-30 18:07:52,228 - AutoSubmitter - INFO - 作业已提交: hmat_160 (ID: 10104)
+2025-12-30 18:07:52,813 - AutoSubmitter - INFO - 作业已提交: hmat_173 (ID: 10105)
+2025-12-30 18:07:53,399 - AutoSubmitter - INFO - 作业已提交: hmat_2180 (ID: 10106)
+2025-12-30 18:07:53,986 - AutoSubmitter - INFO - 作业已提交: hmat_2179 (ID: 10107)
+2025-12-30 18:07:54,572 - AutoSubmitter - INFO - 作业已提交: hmat_2031 (ID: 10108)
+2025-12-30 18:07:55,159 - AutoSubmitter - INFO - 作业已提交: hmat_2103 (ID: 10109)
+2025-12-30 18:07:55,755 - AutoSubmitter - INFO - 作业已提交: hmat_169 (ID: 10110)
+2025-12-30 18:07:56,346 - AutoSubmitter - INFO - 作业已提交: hmat_2099 (ID: 10111)
+2025-12-30 18:07:56,942 - AutoSubmitter - INFO - 作业已提交: hmat_200 (ID: 10112)
+2025-12-30 18:07:57,495 - AutoSubmitter - INFO - 队列状态 - 总任务:87, 运行中:87, 使用节点:87/100, 待提交:30
+2025-12-30 18:07:57,581 - AutoSubmitter - INFO - 作业已提交: hmat_2183 (ID: 10113)
+2025-12-30 18:07:58,164 - AutoSubmitter - INFO - 作业已提交: hmat_122 (ID: 10114)
+2025-12-30 18:07:58,749 - AutoSubmitter - INFO - 作业已提交: hmat_2194 (ID: 10115)
+2025-12-30 18:07:59,333 - AutoSubmitter - INFO - 作业已提交: hmat_126 (ID: 10116)
+2025-12-30 18:07:59,920 - AutoSubmitter - INFO - 作业已提交: hmat_2063 (ID: 10117)
+2025-12-30 18:08:00,506 - AutoSubmitter - INFO - 作业已提交: hmat_2009 (ID: 10118)
+2025-12-30 18:08:01,091 - AutoSubmitter - INFO - 作业已提交: hmat_2019 (ID: 10119)
+2025-12-30 18:08:01,674 - AutoSubmitter - INFO - 作业已提交: hmat_2067 (ID: 10120)
+2025-12-30 18:08:02,260 - AutoSubmitter - INFO - 作业已提交: hmat_2060 (ID: 10121)
+2025-12-30 18:08:02,847 - AutoSubmitter - INFO - 作业已提交: hmat_2169 (ID: 10122)
+2025-12-30 18:08:03,434 - AutoSubmitter - INFO - 作业已提交: hmat_2141 (ID: 10123)
+2025-12-30 18:08:04,023 - AutoSubmitter - INFO - 作业已提交: hmat_170 (ID: 10124)
+2025-12-30 18:08:04,614 - AutoSubmitter - INFO - 作业已提交: hmat_149 (ID: 10125)
+2025-12-30 18:08:05,204 - AutoSubmitter - INFO - 作业已提交: hmat_141 (ID: 10126)
+2025-12-30 18:08:05,767 - AutoSubmitter - INFO - 队列状态 - 总任务:100, 运行中:97, 使用节点:97/100, 待提交:16
+2025-12-30 18:08:05,861 - AutoSubmitter - INFO - 作业已提交: hmat_2228 (ID: 10127)
+2025-12-30 18:08:06,416 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:101, 需要:1, 限制:100))
+2025-12-30 18:08:14,478 - AutoSubmitter - INFO - 队列状态 - 总任务:100, 运行中:99, 使用节点:99/100, 待提交:15
+2025-12-30 18:08:14,567 - AutoSubmitter - INFO - 作业已提交: hmat_163 (ID: 10128)
+2025-12-30 18:08:15,119 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:100, 需要:1, 限制:100))
+2025-12-30 18:08:23,183 - AutoSubmitter - INFO - 队列状态 - 总任务:100, 运行中:100, 使用节点:100/100, 待提交:14
+2025-12-30 18:08:23,243 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:100, 需要:1, 限制:100))
+2025-12-30 18:08:31,304 - AutoSubmitter - INFO - 队列状态 - 总任务:97, 运行中:97, 使用节点:97/100, 待提交:14
+2025-12-30 18:08:31,391 - AutoSubmitter - INFO - 作业已提交: hmat_145 (ID: 10129)
+2025-12-30 18:08:31,981 - AutoSubmitter - INFO - 作业已提交: hmat_2145 (ID: 10130)
+2025-12-30 18:08:32,569 - AutoSubmitter - INFO - 作业已提交: hmat_2038 (ID: 10131)
+2025-12-30 18:08:33,158 - AutoSubmitter - INFO - 作业已提交: hmat_2046 (ID: 10132)
+2025-12-30 18:08:33,773 - AutoSubmitter - INFO - 作业已提交: hmat_128 (ID: 10133)
+2025-12-30 18:08:34,361 - AutoSubmitter - INFO - 作业已提交: hmat_156 (ID: 10134)
+2025-12-30 18:08:34,949 - AutoSubmitter - INFO - 作业已提交: hmat_2021 (ID: 10135)
+2025-12-30 18:08:35,502 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:104, 需要:1, 限制:100))
+2025-12-30 18:08:43,560 - AutoSubmitter - INFO - 队列状态 - 总任务:104, 运行中:104, 使用节点:104/100, 待提交:7
+2025-12-30 18:08:43,612 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:104, 需要:1, 限制:100))
+2025-12-30 18:08:51,674 - AutoSubmitter - INFO - 队列状态 - 总任务:104, 运行中:104, 使用节点:104/100, 待提交:7
+2025-12-30 18:08:51,729 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:104, 需要:1, 限制:100))
+2025-12-30 18:08:59,795 - AutoSubmitter - INFO - 队列状态 - 总任务:102, 运行中:102, 使用节点:102/100, 待提交:7
+2025-12-30 18:08:59,848 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:102, 需要:1, 限制:100))
+2025-12-30 18:09:07,909 - AutoSubmitter - INFO - 队列状态 - 总任务:102, 运行中:102, 使用节点:102/100, 待提交:7
+2025-12-30 18:09:07,961 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:102, 需要:1, 限制:100))
+2025-12-30 18:09:16,025 - AutoSubmitter - INFO - 队列状态 - 总任务:102, 运行中:102, 使用节点:102/100, 待提交:7
+2025-12-30 18:09:16,086 - AutoSubmitter - INFO - 资源不足，等待中... (节点资源不足 (当前:102, 需要:1, 限制:100))
+2025-12-30 18:09:24,098 - AutoSubmitter - INFO - ✅ 配置已更新并应用
+2025-12-30 18:09:24,099 - AutoSubmitter - INFO -    当前节点限制: 200
+2025-12-30 18:09:24,099 - AutoSubmitter - INFO -    当前任务限制: 1000
+2025-12-30 18:09:24,099 - AutoSubmitter - INFO -    当前提交间隔: 0.5秒
+2025-12-30 18:09:24,099 - AutoSubmitter - INFO -    当前检查间隔: 8.0秒
+2025-12-30 18:09:24,153 - AutoSubmitter - INFO - 队列状态 - 总任务:102, 运行中:102, 使用节点:102/200, 待提交:7
+2025-12-30 18:09:24,239 - AutoSubmitter - INFO - 作业已提交: hmat_2087 (ID: 10136)
+2025-12-30 18:09:24,841 - AutoSubmitter - INFO - 作业已提交: hmat_2052 (ID: 10137)
+2025-12-30 18:09:25,425 - AutoSubmitter - INFO - 作业已提交: hmat_2122 (ID: 10138)
+2025-12-30 18:09:26,010 - AutoSubmitter - INFO - 作业已提交: hmat_107 (ID: 10139)
+2025-12-30 18:09:26,594 - AutoSubmitter - INFO - 作业已提交: hmat_1993 (ID: 10140)
+2025-12-30 18:09:27,182 - AutoSubmitter - INFO - 作业已提交: hmat_2051 (ID: 10141)
+2025-12-30 18:09:27,768 - AutoSubmitter - INFO - 作业已提交: hmat_2224 (ID: 10142)
+2025-12-30 18:09:28,269 - AutoSubmitter - INFO - ======================================================================
+2025-12-30 18:09:28,270 - AutoSubmitter - INFO - 提交完成统计:
+2025-12-30 18:09:28,270 - AutoSubmitter - INFO -   成功提交: 100
+2025-12-30 18:09:28,270 - AutoSubmitter - INFO -   待提交: 0
+2025-12-30 18:09:28,270 - AutoSubmitter - INFO -   失败: 0
+2025-12-30 18:09:28,270 - AutoSubmitter - INFO - ======================================================================

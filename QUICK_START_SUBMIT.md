@@ -8,6 +8,36 @@
 python abacus.py workflow InputPoscar/ work_cal7/
 ```
 
+**新增：磁性/自旋自动处理**
+
+- 工作流默认包含 `Test_spin`（测试磁性）阶段：用于快速 SCF 测试并判断是否需要自旋极化。
+- `Test_spin` 结束后，脚本会自动运行 `python abacus.py spin --work_dir .`，解析输出中的
+  `total magnetism (Bohr mag/cell) = ...` 并在作业根目录（例如 `work_cal7/hmat_0/`）生成标记：
+  - `SPIN_ON`：当 \(|mag| > 0.004\)（文件内容为最终磁矩数值）
+  - `SPIN_OFF`：当 \(|mag| \le 0.004\)
+- 后续阶段（`Coarse_relax/Relax/Scf/Band/Dos`）生成输入时会自动读取 `SPIN_ON/SPIN_OFF` 来设置 `nspin`
+  （若对应阶段的 YAML 模板中显式写了 `nspin`，则以模板为准）。
+
+**新增：CIF 自带磁矩（magmom）自动写入 STRU**
+
+- 如果结构文件是 **CIF 格式**，且包含磁矩信息 loop（pymatgen/VASP 常见输出）：
+  ```
+  loop_
+   _atom_site_moment_label
+   _atom_site_moment_crystalaxis_x
+   _atom_site_moment_crystalaxis_y
+   _atom_site_moment_crystalaxis_z
+    Fe0  0.00  0.00  2.50
+    O1   0.00  0.00  0.05
+    ...
+  ```
+- 在生成 `STRU` 时，**自动读取并写入**每个原子的初始磁矩到 `ATOMIC_POSITIONS` 块：
+  - **`-spin 2`（共线磁性）**：写入 `magmom <mz>`（只用 z 分量）
+  - **`-spin 4`（非共线磁性）**：写入 `magmom <mx> <my> <mz>`（完整矢量）
+  - **`-spin 1`（无磁性）**：不写入 `magmom`
+- 如果 CIF 没有磁矩信息，可使用 `--guess-mag` 猜测初始磁矩（默认 2.0 μB）
+- 详见下文 **4.4 节**的手动使用示例
+
 ### 2. 配置资源限制
 
 编辑 `config/condor.ini`：
@@ -125,6 +155,81 @@ EOF
 python submit_jobs.py work_cal7
 ```
 
+### 场景4: 磁性体系（查看/重跑/强制自旋开关）
+
+#### 4.1 查看磁性判断结果
+
+以 `hmat_0` 为例：
+
+```bash
+ls -l work_cal7/hmat_0/SPIN_*
+cat work_cal7/hmat_0/SPIN_ON   # 若存在：表示需要自旋（文件内是磁矩数值）
+```
+
+#### 4.2 手动重跑磁性判断（需要时）
+
+```bash
+python abacus.py spin --work_dir work_cal7/hmat_0/Test_spin
+```
+
+**说明**：
+
+- `abacus.py spin` 会从 `running*.log` 中解析 `total magnetism (Bohr mag/cell) = ...`
+- 并在 `--work_dir` 的**父目录**生成 `SPIN_ON` / `SPIN_OFF`
+  - `SPIN_ON`：当 \(|mag| > 0.004\)
+  - `SPIN_OFF`：当 \(|mag| \le 0.004\)
+
+#### 4.3 强制开启/关闭自旋（无需改代码）
+
+- **方式A：改模板（推荐，最清晰）**
+  - 在对应阶段模板中写死 `nspin`，例如编辑 `config/template/Scf.yaml`：
+    - `nspin: 1`（强制无自旋）
+    - `nspin: 2`（强制共线自旋）
+    - `nspin: 4`（强制非共线；通常还需要 `noncolin: 1`，可参考 `doc/custom_parameters.md`）
+- **方式B：直接写标记文件（快速但要自担风险）**
+  - 强制无自旋：
+
+```bash
+rm -f work_cal7/hmat_0/SPIN_ON
+touch work_cal7/hmat_0/SPIN_OFF
+```
+
+  - 强制有自旋：
+
+```bash
+rm -f work_cal7/hmat_0/SPIN_OFF
+echo 2.0 > work_cal7/hmat_0/SPIN_ON
+```
+
+#### 4.4 手动生成输入时：指定自旋与初始磁矩（`-spin` / `--guess-mag`）
+
+当你不走工作流脚本、而是手动调用 `abacus.py generate` 或 `abacus.py single` 时，可以用 `-spin` 显式控制 STRU 里是否写 `magmom ...`。
+
+**参数说明：**
+- **`-spin N`**（默认 1）：
+  - `-spin 1`：不写 `magmom ...`（非磁性）
+  - `-spin 2`：共线磁性，写 `magmom <value>`
+  - `-spin 4`：非共线磁性，写 `magmom <mx> <my> <mz>`
+- **`--guess-mag`**：仅当 CIF 无磁矩时生效，猜测初始磁矩为 2.0 μB
+
+**快速示例：**
+
+```bash
+# CIF 有磁矩：自动读取并写入 STRU
+python abacus.py generate --work_dir ./job --stage Scf \
+  --stru_file agm001613165.cif -spin 2
+
+# CIF 无磁矩：猜测初始磁矩
+python abacus.py generate --work_dir ./job --stage Scf \
+  --stru_file no_magmom.cif -spin 2 --guess-mag
+
+# 单步批量计算模式
+python abacus.py single cif_files/ work_out/ \
+  -t Scf -k 0.02 -spin 2 --guess-mag
+```
+
+> 📖 **详细使用指南和更多示例**请参考下文 **场景5: 使用带磁矩的 CIF 文件**
+
 ## 停止提交
 
 按 `Ctrl+C` 即可安全停止，已提交的作业不受影响。
@@ -200,6 +305,20 @@ python -m abacus.submit_manager work_cal7/batch_01
 tail -50 logs/submit_*.log
 ```
 
+### Q6: 为什么我已经有磁性，但后续阶段还是无自旋？
+
+请检查以下几点：
+
+1. `Test_spin` 是否确实跑完并生成 `SPIN_ON`（或至少没有生成 `SPIN_OFF`）：
+
+```bash
+ls -l work_cal7/<job>/SPIN_*
+```
+
+2. 阶段模板是否显式指定了 `nspin` 并覆盖了自动检测（模板优先级更高）。
+3. 如果 `Test_spin` 输出里没有出现 `total magnetism (Bohr mag/cell) = ...`，`abacus.py spin` 会给出警告，
+   此时请优先检查 `Test_spin/running*.log` 是否完整。
+
 ## 高级用法
 
 ### 自定义重试次数
@@ -218,6 +337,115 @@ python -m abacus.submit_manager work_cal7 --config my_config.ini
 
 ```bash
 python -m abacus.submit_manager work_cal7 --pattern "hmat_*.sh"
+```
+
+### （可选）手动生成输入时指定自旋
+
+当你手动调用 `abacus.py generate`（不通过工作流脚本）时，可以用 `-spin` 参数控制磁性设置：
+
+```bash
+# 共线磁性（CIF 有磁矩会自动读取）
+python abacus.py generate --work_dir <dir> --stage Scf -spin 2
+
+# CIF 无磁矩时猜测初始磁矩
+python abacus.py generate --work_dir <dir> --stage Scf -spin 2 --guess-mag
+```
+
+> 📖 完整说明和示例请参考 **场景4.4** 和 **场景5**
+
+### 场景5: 使用带磁矩的 CIF 文件（Alexandria 数据库）
+
+当你从 Alexandria 或其他数据库获得的 CIF 文件包含 DFT 计算得到的磁矩信息时：
+
+#### 5.1 检查 CIF 是否包含磁矩
+
+```bash
+# 查看 CIF 文件中是否有磁矩信息
+grep "_atom_site_moment" agm001613165.cif
+```
+
+如果有如下输出，说明包含磁矩：
+```
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Y0  0.00000000  0.00000000  -0.01700000
+  Y1  0.00000000  0.00000000  -0.01700000
+  C2  0.00000000  0.00000000  -0.00800000
+  Fe3  0.00000000  0.00000000  0.16500000
+  Cu4  0.00000000  0.00000000  0.00200000
+```
+
+#### 5.2 单个 CIF 文件测试
+
+```bash
+# 创建测试目录
+mkdir -p test_magnetic
+cd test_magnetic
+
+# 共线磁性计算（自动读取 CIF 中的磁矩）
+python ../abacus.py generate --work_dir . --stage Scf \
+  --stru_file /path/to/agm001613165.cif -spin 2
+
+# 检查生成的 STRU 文件
+cat STRU | grep -A 2 "ATOMIC_POSITIONS"
+# 应该看到每个原子行末尾有 magmom 值
+```
+
+生成的 STRU 格式示例：
+```
+ATOMIC_POSITIONS
+Direct
+
+Y
+0.0
+2
+0.0 0.5 0.0 1 1 1 magmom -0.017
+0.5 0.0 0.0 1 1 1 magmom -0.017
+...
+Fe
+0.0
+1
+0.0 0.0 0.5 1 1 1 magmom 0.165
+```
+
+#### 5.3 批量处理带磁矩的 CIF 文件
+
+```bash
+# 将所有 CIF 文件放在一个目录
+mkdir -p cif_magnetic/
+cp /path/to/alexandria/convex_hull_res_mag/*/*.cif cif_magnetic/
+
+# 使用 single 模式批量生成作业（共线磁性）
+python abacus.py single cif_magnetic/ work_magnetic/ \
+  -t Scf -k 0.02 -spin 2
+
+# 自动提交
+python submit_jobs.py work_magnetic/
+```
+
+#### 5.4 处理非共线磁性
+
+如果 CIF 中的磁矩有明显的 x, y 分量（非共线）：
+
+```bash
+# 非共线磁性计算
+python abacus.py generate --work_dir . --stage Scf \
+  --stru_file noncollinear.cif -spin 4
+
+# 生成的 STRU 会写入：magmom mx my mz
+```
+
+#### 5.5 CIF 无磁矩但需要猜测初始磁矩
+
+```bash
+# 对于过渡金属体系，CIF 没有磁矩信息，但想给初始磁矩
+python abacus.py generate --work_dir . --stage Scf \
+  --stru_file no_magmom.cif -spin 2 --guess-mag
+
+# 这会给每个原子设置初始磁矩 2.0 μB
 ```
 
 ## 完整工作流示例

@@ -1,7 +1,7 @@
 calculation: scf
 basis_type: lcao
 ecutwfc: 120
-scf_thr: 1.0e-6
+scf_thr: 1.0e-7
 scf_nmax: 1
 ks_solver: genelpa
 smearing_method: gaussian

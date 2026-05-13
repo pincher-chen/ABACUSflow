@@ -7,12 +7,258 @@
 
 import os
 import re
+import tempfile
 from pathlib import Path
 
 try:
     from ase.io import read
 except ImportError:
     read = None
+
+
+def sanitize_cif_for_ase(content: str) -> str:
+    """Fix common CIF 2.0 formatting issues that confuse ASE's parser.
+
+    Global pre-processing (applied first):
+    A. Replace Unicode minus ``−`` (U+2212) and en-dash ``–`` (U+2013) with
+       ASCII ``-``.  Some MAGNDATA files use these in fractional coordinates.
+    B. Fix OCR-artifact floats in cell/position lines: strip letter-corrupted
+       uncertainty notation, e.g. ``7.23(I)`` → ``7.23``, ``5.6lS(2)`` → ``5.6``.
+    C. Restore missing ``_`` prefix on tag-like lines outside loops, e.g.
+       ``citation_journal_abbrev "..."`` → ``_citation_journal_abbrev "..."``.
+    D. Remove duplicate/corrupt data blocks: lines like ``ata_5yOhtAoR``
+       (missing the ``d`` prefix) that would confuse the block parser.
+    E. Join multi-line quoted strings: if a ``"`` opens on one line but
+       never closes, merge continuation lines until the closing ``"``.
+
+    Line-by-line fixes (applied in order):
+    1. Orphaned text blocks (no preceding ``_tag``).
+    2. Orphaned standalone ``.`` / ``?`` after a tag that already has a value.
+    3. Orphaned text after a text-block close.
+    """
+    # ── Global pre-processing ─────────────────────────────────────────────
+
+    # A. Unicode minus / en-dash → ASCII minus
+    content = content.replace('\u2212', '-').replace('\u2013', '-')
+
+    # B. OCR-artifact floats — applied globally on all content lines.
+    #    Pattern B1: strip letter-containing short uncertainty, e.g.
+    #      "7.23(I)" → "7.23", "0.381(l)" → "0.381", "2.95(20)" left intact.
+    #    Pattern B2: strip letter artifacts immediately after a decimal number
+    #      when followed by whitespace/paren/end-of-line, e.g.
+    #      "5.6lS(2)" → "5.6(2)" → then B1 gives "5.6".
+    #    Safety: B2 only fires when the trailing character after the letters is
+    #    NOT a digit, which avoids mangling site names like "La0.73Tb0.27".
+    content = re.sub(r'(\d+\.?\d*)\(([^0-9)]{1,3})\)', r'\1', content)
+    content = re.sub(r'(\d+\.\d+)[A-Za-z]+(?=[\s(]|$)', r'\1', content, flags=re.MULTILINE)
+
+    # C. Missing '_' prefix on tag lines (metadata only, e.g. citation fields)
+    # Only applies to tokens that look like CIF data-names but are missing the
+    # leading underscore.  CIF block keywords (data_, loop_, save_, global_,
+    # stop_) and element/site labels must be excluded.
+    _CIF_KEYWORDS = ('data_', 'loop_', 'save_', 'stop_', 'global_')
+
+    def _fix_missing_underscore(line: str) -> str:
+        stripped = line.strip()
+        if not stripped:
+            return line
+        first = stripped.split()[0]
+        # Skip CIF keywords and numeric tokens
+        if any(first.startswith(kw) for kw in _CIF_KEYWORDS):
+            return line
+        # Must look like a CIF data-name missing its leading underscore.
+        # CIF data-names are all-lowercase_underscore_separated (e.g.
+        # citation_journal_abbrev).  Atom-site labels (e.g. Lu1_1, Fe1_2)
+        # start with an uppercase element symbol — exclude those.
+        if ('_' in first and not first.startswith('_')
+                and not first[0].isdigit()
+                and not first[0].isupper()   # uppercase = element/site label
+                and not first.startswith(';')
+                and not first.startswith('"')
+                and not first.startswith("'")
+                and len(stripped.split()) >= 2):
+            return '_' + line
+        return line
+
+    content = '\n'.join(_fix_missing_underscore(l) for l in content.splitlines())
+
+    # D'. Fix lowercase element type symbols in _atom_site_type_symbol context.
+    # Some files have type symbols like "la1" instead of "La" (OCR artifact).
+    # Detect the pattern: 2 all-lowercase letters + a digit, standing alone as
+    # a token in a data row.  Capitalise the first letter and strip the digit.
+    content = re.sub(
+        r'\b([a-z]{1,2})(\d+)\b',
+        lambda m: m.group(1).capitalize() if m.group(1).capitalize() in
+            {'H','He','Li','Be','B','C','N','O','F','Ne','Na','Mg','Al','Si','P',
+             'S','Cl','Ar','K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu',
+             'Zn','Ga','Ge','As','Se','Br','Kr','Rb','Sr','Y','Zr','Nb','Mo','Tc',
+             'Ru','Rh','Pd','Ag','Cd','In','Sn','Sb','Te','I','Xe','Cs','Ba','La',
+             'Ce','Pr','Nd','Pm','Sm','Eu','Gd','Tb','Dy','Ho','Er','Tm','Yb','Lu',
+             'Hf','Ta','W','Re','Os','Ir','Pt','Au','Hg','Tl','Pb','Bi','Po','At',
+             'Rn','Fr','Ra','Ac','Th','Pa','U','Np','Pu'} else m.group(0),
+        content
+    )
+
+    # D. Remove corrupt/duplicate data-block lines (e.g. "ata_5yOhtAoR")
+    def _fix_corrupt_data_block(line: str) -> str:
+        s = line.strip()
+        # Matches "ata_..." (missing the 'd' from "data_...")
+        if re.match(r'^ata_\S+$', s):
+            return ''
+        return line
+
+    content = '\n'.join(_fix_corrupt_data_block(l) for l in content.splitlines())
+
+    # E. Join multi-line quoted strings.
+    # Some files split a double-quoted value across two lines:
+    #   _tag  "value continues on the
+    #   next line)"
+    # Merge at most ONE continuation line; then force-close the string to
+    # prevent cascading merges that would consume the rest of the file.
+    fixed_lines: list[str] = []
+    in_open_string = False
+    for line in content.splitlines():
+        nquotes = line.count('"')
+        if in_open_string:
+            # Merge this one continuation line with the previous
+            merged = fixed_lines[-1] + ' ' + line.strip()
+            # Ensure the merged result has a balanced number of quotes
+            if merged.count('"') % 2 == 1:
+                merged = merged + '"'
+            fixed_lines[-1] = merged
+            in_open_string = False   # always close after one continuation
+        else:
+            fixed_lines.append(line)
+            if nquotes % 2 == 1:
+                in_open_string = True    # opening quote without closing
+    content = '\n'.join(fixed_lines)
+
+    # ── Line-by-line fixes ────────────────────────────────────────────────
+    lines = content.splitlines()
+    result: list[str] = []
+    i = 0
+
+    def _last_nonempty(buf):
+        for k in range(len(buf) - 1, -1, -1):
+            s = buf[k].strip()
+            if s:
+                return s
+        return ''
+
+    def _is_valid_cif_start(s: str) -> bool:
+        return (not s or
+                s.startswith('_') or
+                s.startswith('loop_') or
+                s.startswith('#') or
+                s.startswith('data_') or
+                s.startswith('save_') or
+                s.startswith('stop_') or
+                s == 'global_')
+
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+
+        # ── Bare semicolon ─────────────────────────────────────────────────
+        if stripped == ';':
+            prev = _last_nonempty(result)
+            prev_parts = prev.split()
+            is_tag_no_value = (prev_parts
+                               and prev_parts[0].startswith('_')
+                               and len(prev_parts) == 1)
+            if is_tag_no_value:
+                result.append(line)
+                i += 1
+                while i < len(lines):
+                    bl = lines[i]
+                    if bl.strip() == ';':
+                        result.append(bl)
+                        i += 1
+                        # Fix 3: drop orphaned lines after block close
+                        while i < len(lines):
+                            nxt = lines[i].strip()
+                            if _is_valid_cif_start(nxt):
+                                break
+                            i += 1
+                        break
+                    result.append(bl)
+                    i += 1
+                continue
+            else:
+                # Fix 1: orphaned text block — skip entirely
+                i += 1
+                while i < len(lines) and lines[i].strip() != ';':
+                    i += 1
+                if i < len(lines):
+                    i += 1
+                continue
+
+        # ── Fix 2: orphaned standalone '.' / '?' ───────────────────────────
+        if stripped in ('.', '?'):
+            prev = _last_nonempty(result)
+            prev_parts = prev.split()
+            if (prev_parts
+                    and prev_parts[0].startswith('_')
+                    and len(prev_parts) >= 2):
+                i += 1
+                continue
+
+        result.append(line)
+        i += 1
+
+    return '\n'.join(result)
+
+
+def read_cif_robust(stru_file):
+    """Read a CIF/mcif file with ASE, falling back to sanitized content on failure.
+
+    Strategy:
+    1. Try ``format='mcif'`` (newer ASE only).
+    2. Try ``format='cif'`` on the original file.
+    3. On *any* CIF parsing error, apply ``sanitize_cif_for_ase`` and retry.
+
+    Only non-CIF errors (e.g. ``IOError``, ``MemoryError``) are re-raised
+    immediately without sanitization.
+    """
+    stru_file_str = str(stru_file)
+
+    def _try_read(path, fmt):
+        return read(path, format=fmt)
+
+    # 1. Try format='mcif' (newer ASE versions)
+    try:
+        return _try_read(stru_file_str, 'mcif')
+    except Exception:
+        pass
+
+    # 2. Try format='cif' directly
+    last_err = None
+    try:
+        return _try_read(stru_file_str, 'cif')
+    except (IOError, OSError, MemoryError):
+        raise   # definitely not a CIF content issue
+    except Exception as e:
+        last_err = e   # CIF content issue — fall through to sanitize
+
+    # 3. Sanitize and retry
+    try:
+        with open(stru_file_str, 'r', encoding='utf-8', errors='replace') as fh:
+            content = fh.read()
+    except (IOError, OSError):
+        raise last_err
+    sanitized = sanitize_cif_for_ase(content)
+    with tempfile.NamedTemporaryFile(
+            mode='w', suffix='.cif', delete=False, encoding='utf-8') as tmp:
+        tmp.write(sanitized)
+        tmp_path = tmp.name
+    try:
+        return _try_read(tmp_path, 'cif')
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
 
 # 导入本地模块
 from abacus.stru_utils import (
@@ -59,17 +305,23 @@ def get_nlocal_from_scf(work_dir):
     
     return None
 
-def generate_input_files(work_dir, stage, stru_file, config_get, incar_template, workflow, click_echo=print):
+def generate_input_files(work_dir, stage, stru_file, config_get, incar_template, workflow, click_echo=print, 
+                        spin=None, guess_mag=False, kspacing=None):
     """
     生成 INPUT、KPT、STRU 文件的核心逻辑
     
     参数:
         work_dir: 工作目录（Path 对象）
         stage: 计算阶段名称
-        stru_file: 结构文件路径        config_get: 配置读取函数
+        stru_file: 结构文件路径
+        config_get: 配置读取函数
         incar_template: INPUT 参数模板字典
         workflow: 工作流配置字典
         click_echo: 输出函数（默认 print，可传入 click.echo）
+        spin: 自旋设置 (1=无磁性, 2=共线磁性, 4=非共线磁性)，None表示自动检测
+        guess_mag: 是否猜测初始磁矩（当CIF中没有磁矩时）
+        kspacing: 显式 K 点密度参数 (Å⁻¹)，优先于 workflow.json 中的 stage.kval[0]；
+            None 表示沿用 workflow 默认（兼容旧行为）
     """
     # 检查 ASE 是否可用
     if read is None:
@@ -133,8 +385,8 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
     # 读取结构文件（用于获取元素类型等信息）
     # 根据文件扩展名选择正确的格式
     stru_file_lower = str(stru_file).lower()
-    if stru_file_lower.endswith('.cif'):
-        stru = read(stru_file, format='cif')
+    if stru_file_lower.endswith(('.mcif', '.cif')):
+        stru = read_cif_robust(stru_file)
     elif stru_file_lower.endswith('.xyz'):
         stru = read(stru_file, format='xyz')
     elif stru_file_lower.endswith(('.vasp', '.poscar', '.contcar')):
@@ -339,8 +591,11 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
     if 'kspacing' not in stage_params:
         kspacing_list = stage_workflow_config.get('kval', None)
         ktype = stage_workflow_config.get('ktype', 'Gamma')
-        
-        if kspacing_list and len(kspacing_list) > 0:
+
+        # 优先级: 显式参数 kspacing > workflow.json 的 stage.kval[0] > 全局 KSPACING
+        if kspacing is not None:
+            click_echo(f"[INFO] Using kspacing={kspacing} Å⁻¹ from --kval (overrides workflow default)")
+        elif kspacing_list and len(kspacing_list) > 0:
             kspacing = kspacing_list[0]
         else:
             kspacing = KSPACING
@@ -383,6 +638,16 @@ Line
             need_fr = True
             click_echo(f"[INFO] SOC calculation detected (lspinorb=1), will use FR pseudopotentials")
         
+        # 确定使用的 spin 值
+        # 优先级: 命令行参数 > 模板参数 > 自动检测
+        final_spin = spin if spin is not None else default_nspin
+        
+        # 判断是否是 CIF / MCIF 文件（均需尝试读取磁矩）
+        cif_file_path = None
+        if str(stru_file).lower().endswith(('.cif', '.mcif')):
+            cif_file_path = str(stru_file)
+            click_echo(f"[INFO] CIF/MCIF file detected, will try to read magnetic moments")
+        
         # 其他阶段正常生成 STRU
         # 注意：potential_name='PotSG15' 用于静态字典回退
         # 如果是动态目录，会自动使用 pick_upf 选择最佳版本
@@ -392,8 +657,10 @@ Line
                         potential_name='PotSG15',
                         basis_name='SG15std',
                         coordinates_type='Direct',
-                        spin=default_nspin,
+                        spin=final_spin,
                         filename='STRU',
                         copy_files=False,
-                        need_fr=need_fr)
+                        need_fr=need_fr,
+                        cif_file=cif_file_path,
+                        guess_mag=guess_mag)
 

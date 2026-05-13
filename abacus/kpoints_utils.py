@@ -33,31 +33,32 @@ def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
         npoints = int(kspacing) if kspacing >= 1 else 20
         return [npoints]
     
-    # Gamma 网格：计算倒易晶格
-    # ASE Cell.reciprocal() 返回的是物理学约定（包含 2π）
+    # Gamma 网格：计算倒易晶格（晶体学约定，无 2π）
+    # 与 vaspkit -kpr 和 VASP 实际 KSPACING 处理保持同一种 Å⁻¹ 标度。
+    # 注意 ASE Cell.reciprocal() 已经是 *无 2π* 的晶体学倒易矩阵
+    # （实测 |b_i| 与 物理学约定 / 2π 严格相等）。
     if hasattr(cell, 'reciprocal'):
-        # ASE Cell 对象
-        reciprocal_cell = cell.reciprocal()
+        # ASE Cell 对象（无 2π）
+        reciprocal_cell = np.array(cell.reciprocal())
     else:
-        # 普通数组，手动计算倒易晶格（物理学约定，包含 2π）
-        # b_i = 2π × (a_j × a_k) / V
+        # 普通数组，手算晶体学倒易：b_i = (a_j × a_k) / V，无 2π
         cell = np.array(cell)
         volume = np.abs(np.dot(cell[0], np.cross(cell[1], cell[2])))
         reciprocal_cell = np.zeros((3, 3))
-        reciprocal_cell[0] = 2 * pi * np.cross(cell[1], cell[2]) / volume
-        reciprocal_cell[1] = 2 * pi * np.cross(cell[2], cell[0]) / volume
-        reciprocal_cell[2] = 2 * pi * np.cross(cell[0], cell[1]) / volume
-    
-    # 计算 K点数（与 VASP 相同的公式）
-    # k_i = floor(|b_i| / (2π × kspacing))
-    # 其中 |b_i| 是倒易晶格矢量的模（Å⁻¹）
+        reciprocal_cell[0] = np.cross(cell[1], cell[2]) / volume
+        reciprocal_cell[1] = np.cross(cell[2], cell[0]) / volume
+        reciprocal_cell[2] = np.cross(cell[0], cell[1]) / volume
+
+    # K 点数公式：N_i = max(1, floor(round(|b_i| / kspacing)))
+    # 与 dftflow (calculation/vasp/inputs/kpoints.py::get_kmesh) 严格一致——
+    # 该实现是 N = floor(round(|b 含 2π| / (2π × mesh)))，等价于这里
+    # N = floor(round(|b 无 2π| / mesh))，因为 ASE Cell.reciprocal() 本身不含 2π。
+    # 历史 bug: 原代码多除了一个 2π，导致 mesh 缩水 ~2π 倍。
     Kpoints = []
     for i in range(3):
-        b_norm = np.linalg.norm(reciprocal_cell[i])
+        b_norm = float(np.linalg.norm(reciprocal_cell[i]))
         if b_norm > 0:
-            # 使用 floor 和 round，与 VASP 一致
-            k = int(np.floor(np.round(b_norm / (2 * pi * kspacing))))
-            k = max(1, k)  # 至少为 1
+            k = max(1, int(np.floor(np.round(b_norm / kspacing))))
         else:
             k = 1
         Kpoints.append(k)

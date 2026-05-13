@@ -1,0 +1,13 @@
+2025-12-29 18:31:23,375 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - Slurm 自动提交器启动
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 工作目录: batch_work2/
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 分区: allsys --reservation=hpc_test
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 节点限制: 15
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 任务限制: 1000
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 提交间隔: 0.5秒
+2025-12-29 18:31:23,376 - AutoSubmitter - INFO - 检查间隔: 8.0秒
+2025-12-29 18:31:23,377 - AutoSubmitter - INFO - ======================================================================
+2025-12-29 18:31:23,377 - AutoSubmitter - INFO - 扫描作业脚本: batch_work2/
+2025-12-29 18:31:23,377 - AutoSubmitter - ERROR - 工作目录不存在: batch_work2/
+2025-12-29 18:31:23,377 - AutoSubmitter - WARNING - 没有找到待提交的作业

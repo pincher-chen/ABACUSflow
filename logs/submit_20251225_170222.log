@@ -1,0 +1,55 @@
+2025-12-25 17:02:22,535 - AutoSubmitter - INFO - ======================================================================
+2025-12-25 17:02:22,536 - AutoSubmitter - INFO - Slurm 自动提交器启动
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - ======================================================================
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 工作目录: batch_work/
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 分区: deimos
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 节点限制: 10
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 任务限制: 1000
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 提交间隔: 0.5秒
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 检查间隔: 80.0秒
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - ======================================================================
+2025-12-25 17:02:22,537 - AutoSubmitter - INFO - 扫描作业脚本: batch_work/
+2025-12-25 17:02:22,649 - AutoSubmitter - INFO - 找到 100 个脚本文件
+2025-12-25 17:02:22,726 - AutoSubmitter - INFO - 队列中共有 100 个作业待提交
+2025-12-25 17:02:22,772 - AutoSubmitter - INFO - 队列状态 - 总任务:1, 运行中:1, 使用节点:1/10, 待提交:100
+2025-12-25 17:02:22,838 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_163
+2025-12-25 17:02:23,403 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_155
+2025-12-25 17:02:23,969 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2104
+2025-12-25 17:02:24,535 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_12
+2025-12-25 17:02:25,159 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_160
+2025-12-25 17:02:25,725 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2067
+2025-12-25 17:02:26,291 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2150
+2025-12-25 17:02:26,855 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2010
+2025-12-25 17:02:27,419 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2028
+2025-12-25 17:02:27,987 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2145
+2025-12-25 17:02:28,553 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_109
+2025-12-25 17:02:29,120 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_0
+2025-12-25 17:02:29,684 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2194
+2025-12-25 17:02:30,243 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2021
+2025-12-25 17:02:30,950 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_173
+2025-12-25 17:02:31,523 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2121
+2025-12-25 17:02:32,090 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_16
+2025-12-25 17:02:32,658 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_148
+2025-12-25 17:02:33,225 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2099
+2025-12-25 17:02:33,791 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2170
+2025-12-25 17:02:34,352 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2183
+2025-12-25 17:02:34,916 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_107
+2025-12-25 17:02:35,483 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_117
+2025-12-25 17:02:36,049 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2083
+2025-12-25 17:02:36,616 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2224
+2025-12-25 17:02:37,183 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2169
+2025-12-25 17:02:37,753 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2141
+2025-12-25 17:02:38,320 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2125
+2025-12-25 17:02:38,887 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2063
+2025-12-25 17:02:39,451 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2107
+2025-12-25 17:02:40,017 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_152
+2025-12-25 17:02:40,588 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2038
+2025-12-25 17:02:41,151 - AutoSubmitter - WARNING - 作业提交失败，将重试 (1/3): hmat_2213
+2025-12-25 17:02:41,710 - AutoSubmitter - INFO - 
+用户中断，正在停止...
+2025-12-25 17:02:41,710 - AutoSubmitter - INFO - ======================================================================
+2025-12-25 17:02:41,711 - AutoSubmitter - INFO - 提交完成统计:
+2025-12-25 17:02:41,711 - AutoSubmitter - INFO -   成功提交: 0
+2025-12-25 17:02:41,711 - AutoSubmitter - INFO -   待提交: 99
+2025-12-25 17:02:41,711 - AutoSubmitter - INFO -   失败: 0
+2025-12-25 17:02:41,711 - AutoSubmitter - INFO - ======================================================================
