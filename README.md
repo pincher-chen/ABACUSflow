@@ -39,10 +39,13 @@ abacusflow/
 ### 工作流模式（多阶段）
 
 ```bash
-# 生成完整工作流脚本（Test_spin → Relax → Scf → Band/Dos）
+# 为每个结构生成完整工作流脚本（Test_spin → Relax → Scf → Band/Dos）
 python abacus.py workflow examples4stru/batch_poscar/ work_cal/
 
-# 进入某材料目录提交
+# 批量提交所有工作流脚本
+python submit_jobs.py work_cal/
+
+# 或手动提交单个材料
 cd work_cal/<structure>/
 yhbatch <structure>.sh
 ```
@@ -52,6 +55,12 @@ yhbatch <structure>.sh
 ```bash
 # 为某目录下所有结构文件生成指定阶段的输入文件和提交脚本
 python abacus.py single examples4stru/batch_mcif/ work_cal/ -t Scf-Spin2 -k 0.02 -spin 2
+
+# 只处理文件名包含 "FeI2" 的结构（-f 可多次指定，取并集）
+python abacus.py single examples4stru/batch_mcif/ work_cal/ -t Scf-Spin2 -k 0.02 -spin 2 -f "FeI2"
+
+# 支持 glob 通配符（如处理所有 agm001* 开头的文件）
+python abacus.py single examples4stru/batch_mcif/ work_cal/ -t Scf-Spin2 -k 0.02 -spin 2 -f "agm001*"
 
 # 批量提交
 python submit_jobs.py work_cal/ --single
@@ -102,7 +111,7 @@ python abacus.py workflow <stru_path> <work_dir>
 python abacus.py generate --work_dir <dir> --stage <stage> [--spin N] [--kval 0.02]
 
 # 批量单阶段
-python abacus.py single <input_dir> <output_dir> -t <template> -k <kval> [-spin N]
+python abacus.py single <input_dir> <output_dir> -t <template> -k <kval> [-spin N] [-f <filter>]
 
 # 批量提交
 python submit_jobs.py <work_dir> [--single]
