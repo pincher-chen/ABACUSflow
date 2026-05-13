@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_CsCuCl2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.54306843
+_cell_length_b   5.54306842
+_cell_length_c   7.87232910
+_cell_angle_alpha   69.38661848
+_cell_angle_beta   69.38661846
+_cell_angle_gamma   60.00000002
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   CsCuCl2
+_chemical_formula_sum   'Cs1 Cu1 Cl2'
+_cell_volume   191.38569392
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.50000000  0.50000000  0.50000000  1
+  Cu  Cu1  1  0.00000000  0.00000000  0.00000000  1
+  Cl  Cl2  1  0.09742869  0.09742869  0.70771294  1
+  Cl  Cl3  1  0.90257131  0.90257131  0.29228706  1
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Cu1  -0.02645988  -0.02645988  0.11273587
+  Cl2  -0.00282581  -0.00282581  0.01203975
+  Cl3  -0.00282581  -0.00282581  0.01203975

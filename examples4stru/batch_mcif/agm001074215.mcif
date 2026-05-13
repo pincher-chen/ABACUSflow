@@ -1,0 +1,45 @@
+# generated using pymatgen
+data_Ba2TcO4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.10347948
+_cell_length_b   4.10347948
+_cell_length_c   7.31813271
+_cell_angle_alpha   73.71807939
+_cell_angle_beta   73.71807939
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ba2TcO4
+_chemical_formula_sum   'Ba2 Tc1 O4'
+_cell_volume   113.12668933
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ba  Ba0  1  0.35620325  0.35620325  0.28759350  1
+  Ba  Ba1  1  0.64379675  0.64379675  0.71240650  1
+  O  O2  1  0.15268508  0.15268508  0.69462984  1
+  O  O3  1  0.84731492  0.84731492  0.30537016  1
+  O  O4  1  0.00000000  0.50000000  0.00000000  1
+  O  O5  1  0.50000000  0.00000000  0.00000000  1
+  Tc  Tc6  1  0.00000000  0.00000000  0.00000000  1
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Ba0  -0.00366474  -0.00366474  0.01307137
+  Ba1  -0.00366474  -0.00366474  0.01307137
+  O2  -0.02931791  -0.02931791  0.10457093
+  O3  -0.02931791  -0.02931791  0.10457093
+  O4  -0.03176107  -0.03176107  0.11328517
+  O5  -0.03176107  -0.03176107  0.11328517
+  Tc6  -0.55642944  -0.55642944  1.98466910

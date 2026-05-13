@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_RbCuCl2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.20057036
+_cell_length_b   5.20057035
+_cell_length_c   7.74896602
+_cell_angle_alpha   70.39307442
+_cell_angle_beta   70.39307437
+_cell_angle_gamma   59.99999997
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   RbCuCl2
+_chemical_formula_sum   'Rb1 Cu1 Cl2'
+_cell_volume   167.32094932
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cu  Cu0  1  0.00000000  0.00000000  0.00000000  1
+  Rb  Rb1  1  0.50000000  0.50000000  0.50000000  1
+  Cl  Cl2  1  0.09813337  0.09813337  0.70559890  1
+  Cl  Cl3  1  0.90186663  0.90186663  0.29440110  1
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Cu0  -0.02572278  -0.02572278  0.11498254
+  Cl2  -0.00266934  -0.00266934  0.01193215
+  Cl3  -0.00266934  -0.00266934  0.01193215

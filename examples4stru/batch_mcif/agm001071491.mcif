@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Cs2FeF4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.41010762
+_cell_length_b   4.41010762
+_cell_length_c   7.93534308
+_cell_angle_alpha   73.86642811
+_cell_angle_beta   73.86642811
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Cs2FeF4
+_chemical_formula_sum   'Cs2 Fe1 F4'
+_cell_volume   141.91829452
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.64515259  0.64515259  0.70969481  1
+  Cs  Cs1  1  0.35484741  0.35484741  0.29030519  1
+  Fe  Fe2  1  0.00000000  0.00000000  0.00000000  1
+  F  F3  1  0.86081337  0.86081337  0.27837327  1
+  F  F4  1  0.13918663  0.13918663  0.72162673  1
+  F  F5  1  0.00000000  0.50000000  0.00000000  1
+  F  F6  1  0.50000000  0.00000000  0.00000000  1
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Fe2  -1.14983055  -1.14983055  4.13790353
+  F3  -0.00846130  -0.00846130  0.03044975
+  F4  -0.00846130  -0.00846130  0.03044975
+  F5  -0.00936787  -0.00936787  0.03371222
+  F6  -0.00936787  -0.00936787  0.03371222

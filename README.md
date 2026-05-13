@@ -27,6 +27,10 @@ abacusflow/
 │   ├── condor.ini         # 集群和路径配置
 │   ├── workflow.json      # 工作流阶段配置
 │   └── template/          # 各阶段 YAML 参数模板
+├── examples4stru/         # 输入结构示例
+│   ├── batch_poscar/      # VASP POSCAR 格式
+│   ├── batch_cif/         # CIF 格式
+│   └── batch_mcif/        # 磁结构 magCIF 格式
 └── doc/                   # 详细文档
 ```
 
@@ -36,7 +40,7 @@ abacusflow/
 
 ```bash
 # 生成完整工作流脚本（Test_spin → Relax → Scf → Band/Dos）
-python abacus.py workflow InputPoscar/ work_cal/
+python abacus.py workflow examples4stru/batch_poscar/ work_cal/
 
 # 进入某材料目录提交
 cd work_cal/<structure>/
@@ -47,19 +51,19 @@ yhbatch <structure>.sh
 
 ```bash
 # 为某目录下所有结构文件生成指定阶段的输入文件和提交脚本
-python abacus.py single <input_dir> <output_dir> -t Scf-Spin2 -k 0.02 -spin 2
+python abacus.py single examples4stru/batch_mcif/ work_cal/ -t Scf-Spin2 -k 0.02 -spin 2
 
 # 批量提交
-python submit_jobs.py <output_dir> --single
+python submit_jobs.py work_cal/ --single
 ```
 
 ### 生成单个材料的输入文件
 
 ```bash
 python abacus.py generate \
-    --work_dir <output_dir> \
+    --work_dir work_cal/agm001014431 \
     --stage Scf-Spin2 \
-    --stru_file structure.mcif \
+    --stru_file examples4stru/batch_mcif/agm001014431.mcif \
     --spin 2 \
     --kval 0.02
 ```

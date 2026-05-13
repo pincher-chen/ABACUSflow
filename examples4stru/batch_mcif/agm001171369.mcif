@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Be4VIr
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.32451604
+_cell_length_b   4.32451604
+_cell_length_c   4.32451604
+_cell_angle_alpha   59.99999999
+_cell_angle_beta   60.00000000
+_cell_angle_gamma   60.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Be4VIr
+_chemical_formula_sum   'Be4 V1 Ir1'
+_cell_volume   57.18702958
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Be  Be0  1  0.62641728  0.62641628  0.12075017  1
+  Be  Be1  1  0.62641728  0.12075017  0.62641628  1
+  Be  Be2  1  0.62641728  0.62641628  0.62641628  1
+  Be  Be3  1  0.12075117  0.62641628  0.62641628  1
+  Ir  Ir4  1  0.25000000  0.25000000  0.25000000  1
+  V  V5  1  0.00000000  0.00000000  0.00000000  1
+loop_
+ _atom_site_moment_label
+ _atom_site_moment_crystalaxis_x
+ _atom_site_moment_crystalaxis_y
+ _atom_site_moment_crystalaxis_z
+  Be0  -0.00040825  -0.00040825  0.00122474
+  Be1  -0.00040825  -0.00040825  0.00122474
+  Be2  -0.00040825  -0.00040825  0.00122474
+  Be3  -0.00040825  -0.00040825  0.00122474
+  Ir4  -0.01551344  -0.01551344  0.04654031
+  V5  -0.13513018  -0.13513018  0.40539055
