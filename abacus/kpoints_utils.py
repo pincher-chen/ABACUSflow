@@ -9,10 +9,10 @@ import numpy as np
 from math import pi, ceil
 
 
-def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
+def calculate_kpoints_from_cell(cell, kspacing, ktype="Gamma"):
     """
     从晶胞矩阵计算 K点网格
-    
+
     Parameters:
     -----------
     cell : array-like or ase.cell.Cell
@@ -22,22 +22,22 @@ def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
         越小越密集，典型值：0.02-0.10
     ktype : str
         K点类型，'Gamma' 或 'Line'
-    
+
     Returns:
     --------
     kpoints : list of int
         [k1, k2, k3] K点网格
     """
-    if ktype == 'Line':
+    if ktype == "Line":
         # 能带计算，kspacing 表示点数
         npoints = int(kspacing) if kspacing >= 1 else 20
         return [npoints]
-    
+
     # Gamma 网格：计算倒易晶格（晶体学约定，无 2π）
     # 与 vaspkit -kpr 和 VASP 实际 KSPACING 处理保持同一种 Å⁻¹ 标度。
     # 注意 ASE Cell.reciprocal() 已经是 *无 2π* 的晶体学倒易矩阵
     # （实测 |b_i| 与 物理学约定 / 2π 严格相等）。
-    if hasattr(cell, 'reciprocal'):
+    if hasattr(cell, "reciprocal"):
         # ASE Cell 对象（无 2π）
         reciprocal_cell = np.array(cell.reciprocal())
     else:
@@ -62,10 +62,10 @@ def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
         else:
             k = 1
         Kpoints.append(k)
-    
+
     # 检测真空层/层状结构
     cell_lengths = [np.linalg.norm(cell[i]) for i in range(3)]
-    
+
     for i in range(3):
         # 条件：
         # 1. 晶格常数 > 15 Å
@@ -73,19 +73,27 @@ def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
         # 3. 该方向远大于其他方向的平均值（> 5倍）
         other_lengths = [cell_lengths[j] for j in range(3) if j != i]
         avg_other = sum(other_lengths) / len(other_lengths) if other_lengths else 1.0
-        
-        if cell_lengths[i] > 15.0 and Kpoints[i] > 50 and cell_lengths[i] > 5 * avg_other:
-            print(f"[WARNING] Direction {i}: lattice = {cell_lengths[i]:.2f} Å, K-points = {Kpoints[i]}")
-            print(f"[WARNING] Detected vacuum/layered direction, setting K-point {i} = 1")
+
+        if (
+            cell_lengths[i] > 15.0
+            and Kpoints[i] > 50
+            and cell_lengths[i] > 5 * avg_other
+        ):
+            print(
+                f"[WARNING] Direction {i}: lattice = {cell_lengths[i]:.2f} Å, K-points = {Kpoints[i]}"
+            )
+            print(
+                f"[WARNING] Detected vacuum/layered direction, setting K-point {i} = 1"
+            )
             Kpoints[i] = 1
-    
+
     return Kpoints
 
 
-def calculate_kpoints_from_stru(stru_file, kspacing, ktype='Gamma'):
+def calculate_kpoints_from_stru(stru_file, kspacing, ktype="Gamma"):
     """
     从 STRU 文件计算 K点网格
-    
+
     Parameters:
     -----------
     stru_file : str
@@ -94,28 +102,28 @@ def calculate_kpoints_from_stru(stru_file, kspacing, ktype='Gamma'):
         倒空间 K点间距参数（Å⁻¹），与 VASP 的 KSPACING 一致
     ktype : str
         K点类型
-    
+
     Returns:
     --------
     kpoints : list of int
         [k1, k2, k3] K点网格
     """
     # 读取 STRU 文件
-    with open(stru_file, 'r') as f:
+    with open(stru_file, "r") as f:
         lines = f.readlines()
-    
+
     # 解析晶格信息
     lattice_constant = 1.0
     cell_vectors = []
-    
+
     for i, line in enumerate(lines):
-        if 'LATTICE_CONSTANT' in line:
+        if "LATTICE_CONSTANT" in line:
             if i + 1 < len(lines):
                 try:
                     lattice_constant = float(lines[i + 1].strip())
                 except:
                     pass
-        elif 'LATTICE_VECTORS' in line:
+        elif "LATTICE_VECTORS" in line:
             for j in range(1, 4):
                 if i + j < len(lines):
                     try:
@@ -124,20 +132,20 @@ def calculate_kpoints_from_stru(stru_file, kspacing, ktype='Gamma'):
                     except:
                         pass
             break
-    
+
     if len(cell_vectors) < 3:
         return [1, 1, 1]
-    
+
     # 构建晶胞矩阵（单位：Å）
     cell = np.array(cell_vectors) * lattice_constant
-    
+
     return calculate_kpoints_from_cell(cell, kspacing, ktype)
 
 
 def update_kpt_file(kpt_file, kpoints):
     """
     更新 KPT 文件
-    
+
     Parameters:
     -----------
     kpt_file : str
@@ -145,30 +153,32 @@ def update_kpt_file(kpt_file, kpoints):
     kpoints : list of int
         新的 K点网格 [k1, k2, k3]
     """
-    with open(kpt_file, 'r') as f:
+    with open(kpt_file, "r") as f:
         lines = f.readlines()
-    
+
     # 修改第4行（K点数）
     if len(lines) > 3:
         old_kpts = lines[3].split()
         if len(old_kpts) >= 6:
             # 保持后3个参数不变（shift）
-            lines[3] = f"{kpoints[0]}  {kpoints[1]}  {kpoints[2]}  {old_kpts[3]}  {old_kpts[4]}  {old_kpts[5]}\n"
+            lines[3] = (
+                f"{kpoints[0]}  {kpoints[1]}  {kpoints[2]}  {old_kpts[3]}  {old_kpts[4]}  {old_kpts[5]}\n"
+            )
         else:
             lines[3] = f"{kpoints[0]}  {kpoints[1]}  {kpoints[2]}  0  0  0\n"
-    
-    with open(kpt_file, 'w') as f:
+
+    with open(kpt_file, "w") as f:
         f.writelines(lines)
-    
+
     print(f"[INFO] K-points updated: {kpoints[0]} {kpoints[1]} {kpoints[2]}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 测试
     import sys
+
     if len(sys.argv) > 2:
         stru_file = sys.argv[1]
         kval = float(sys.argv[2])
         kpoints = calculate_kpoints_from_stru(stru_file, kval)
         print(f"K-points for kval={kval}: {kpoints}")
-
