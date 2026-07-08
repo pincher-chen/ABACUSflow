@@ -16,17 +16,18 @@ if _condor.exists():
 else:
     # 如果配置文件不存在，创建默认配置
     CONDOR = configparser.ConfigParser()
-    CONDOR.add_section('ABACUS')
-    CONDOR.add_section('STRU')
-    CONDOR.add_section('MODULE')
-    CONDOR.add_section('ALLOW')
-    CONDOR.add_section('PARAMETERS')
+    CONDOR.add_section("ABACUS")
+    CONDOR.add_section("STRU")
+    CONDOR.add_section("MODULE")
+    CONDOR.add_section("ALLOW")
+    CONDOR.add_section("PARAMETERS")
 
 # 读取工作流配置
 WORKFLOW = {}
 if _workflow.exists():
     import json
-    with open(_workflow, 'r') as f:
+
+    with open(_workflow, "r") as f:
         WORKFLOW = json.load(f)
 
 # 加载模板
@@ -34,8 +35,9 @@ INCAR_TEMPLATE = {}
 _temp_dir = _config_root / "template"
 if _temp_dir.exists():
     import yaml
+
     for template_file in _temp_dir.glob("*.yaml"):
-        with open(template_file, 'r') as f:
+        with open(template_file, "r") as f:
             stage_name = template_file.stem
             try:
                 INCAR_TEMPLATE[stage_name] = yaml.safe_load(f)
@@ -44,6 +46,7 @@ if _temp_dir.exists():
 
 PACKAGE_ROOT = _config_root.parent
 
+
 def get(section, key, fallback=None):
     """获取配置值"""
     try:
@@ -51,8 +54,8 @@ def get(section, key, fallback=None):
     except (configparser.NoSectionError, configparser.NoOptionError):
         return fallback
 
-if __name__ == '__main__':
-    # 测试读取配置
-    print("ABACUS_DIR:", get('ABACUS', 'ABACUS_DIR'))
-    print("PARTITION:", get('ALLOW', 'PARTITION'))
 
+if __name__ == "__main__":
+    # 测试读取配置
+    print("ABACUS_DIR:", get("ABACUS", "ABACUS_DIR"))
+    print("PARTITION:", get("ALLOW", "PARTITION"))

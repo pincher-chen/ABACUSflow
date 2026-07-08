@@ -5,10 +5,10 @@
 使用方法:
     # 提交新作业（workflow模式生成的脚本）
     python submit_jobs.py work_cal7
-    
+
     # 提交续算作业
     python submit_jobs.py batch_work/ --resume
-    
+
     # 提交单步计算作业（single模式生成的脚本）
     python submit_jobs.py batch_work_single/ --single
 
@@ -58,31 +58,35 @@ def print_help():
 
 def main():
     # 检查帮助参数
-    if '--help' in sys.argv or '-h' in sys.argv:
+    if "--help" in sys.argv or "-h" in sys.argv:
         print_help()
         sys.exit(0)
-    
-    if len(sys.argv) < 2 or sys.argv[1].startswith('-'):
+
+    if len(sys.argv) < 2 or sys.argv[1].startswith("-"):
         print_help()
         sys.exit(1)
-    
+
     work_dir = sys.argv[1]
-    
+
     # 检查模式
-    include_resume = '--resume' in sys.argv
-    include_single = '--single' in sys.argv
-    
+    include_resume = "--resume" in sys.argv
+    include_single = "--single" in sys.argv
+
     # 创建自动提交器（使用绝对路径）
     submitter = AutoSubmitter(config_file=DEFAULT_CONFIG)
-    
+
     # 运行提交流程
     try:
-        submitter.run(work_dir, max_retries=3, include_resume=include_resume, include_single=include_single)
+        submitter.run(
+            work_dir,
+            max_retries=3,
+            include_resume=include_resume,
+            include_single=include_single,
+        )
     except KeyboardInterrupt:
         print("\n\n用户中断，正在停止...")
         submitter.stop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
