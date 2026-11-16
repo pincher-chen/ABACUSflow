@@ -169,10 +169,11 @@ class SlurmMonitor:
             (total_jobs, running_jobs, used_nodes)
         """
         try:
-            # 使用squeue获取当前用户的作业
+            # 使用队列查询命令（condor.ini [SCHEDULER] QUEUE_CMD，默认 squeue）
             # 只使用 partition 的第一个部分（如果包含额外参数则忽略）
             partition_name = self.config.partition.split()[0]
-            cmd = f"squeue -u $USER -h -o '%T %D' -p {partition_name}"
+            queue_cmd = self.config.get('SCHEDULER', 'QUEUE_CMD', 'squeue')
+            cmd = f"{queue_cmd} -u $USER -h -o '%T %D' -p {partition_name}"
             result = subprocess.run(
                 cmd, 
                 shell=True, 
@@ -491,15 +492,16 @@ class AutoSubmitter:
             # 构建sbatch命令
             # 使用脚本中解析出的实际核心数，而不是独占整个节点
             # 这样可以更高效地利用集群资源
+            submit_cmd = self.config.get('SCHEDULER', 'SUBMIT_CMD', 'sbatch')
             cmd = [
-                'sbatch',
+                submit_cmd,
                 '-N', str(job.nodes),
                 '-n', str(job.cores),  # 使用脚本中实际需要的核心数
             ]
             
             # 处理 partition 参数（可能包含额外选项如 --reservation）
             # 支持两种格式：
-            # 1. PARTITION = deimos
+            # 1. PARTITION = normal
             # 2. PARTITION = allsys --reservation=hpc_test
             partition_parts = job.partition.split()
             if partition_parts:

@@ -45,7 +45,25 @@ if _temp_dir.exists():
 PACKAGE_ROOT = _config_root.parent
 
 def get(section, key, fallback=None):
-    """获取配置值"""
+    """获取配置值。
+
+    查找顺序：ABACUSFLOW_CONFIG / 当前目录 / 当前目录/config / 包内 config，
+    并支持 ABACUSFLOW_<KEY> 环境变量覆盖（见 abacus.cluster_config）。
+    这样配置不必写死在镜像里，也能按作业目录分别配置。
+    """
+    try:
+        import sys as _sys
+        from pathlib import Path as _Path
+        _pkg_root = str(_Path(__file__).resolve().parent.parent)
+        if _pkg_root not in _sys.path:
+            _sys.path.insert(0, _pkg_root)
+        from abacus.cluster_config import ClusterConfig
+        val = ClusterConfig().get(section, key)
+        if val not in (None, ""):
+            return val
+    except Exception:
+        pass
+    # 回落到包内配置文件
     try:
         return CONDOR.get(section, key, fallback=fallback)
     except (configparser.NoSectionError, configparser.NoOptionError):

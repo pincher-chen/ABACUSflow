@@ -9,6 +9,7 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 from config import WORKFLOW, CONDOR, get
+from abacus.cluster_config import ClusterConfig, render_env_setup, runtime_python
 from abacus.resume_utils import (
     backup_logs, 
     clean_stage_errors,
@@ -37,17 +38,22 @@ class AbacusFlowManager:
                 if not search_path.exists():
                     search_path = Path('.')
         
-        # 确定后缀
-        stru_suffix = get('STRU', 'SUFFIX', suffix)
-                
+        # 确定后缀：支持空格分隔的多个模式（如 "*.vasp *.cif *.mcif"）
+        ccfg = ClusterConfig()
+        raw_suffix = ccfg.get('STRU', 'SUFFIX', suffix) or suffix
+        suffixes = raw_suffix.split()
+
         # 处理单个文件还是目录
         if search_path.is_file():
             structure_files = [search_path]
         else:
-            structure_files = list(search_path.glob(stru_suffix))
-        
+            found = set()
+            for pat in suffixes:
+                found.update(search_path.glob(pat))
+            structure_files = sorted(found)
+
         if not structure_files:
-            print(f"No structure files found in {search_path} with suffix {stru_suffix}")
+            print(f"No structure files found in {search_path} with suffix {' '.join(suffixes)}")
             return
             
         print(f"Found {len(structure_files)} structure files.")
@@ -194,17 +200,15 @@ class AbacusFlowManager:
         abacus_py_default = (Path(__file__).parent.parent / 'abacus.py').absolute()
         abacus_py_conf = get('ENV', 'ABACUS_PY', None)
         abacus_py = Path(abacus_py_conf).absolute() if abacus_py_conf else abacus_py_default
-        
+
         monitor_py = (Path(__file__).parent / 'monitor.py').absolute()
         stru_file_abs = job_dir / 'STRU.vasp'
-        
-        # 获取配置
-        conda_path = get('ENV', 'CONDA_PATH', '/XYFS01/nscc-gz_pinchen_1/sf_install/miniconda3')
-        conda_env = get('ENV', 'CONDA_ENV', 'dftflow')
-        abacus_dir = get('ABACUS', 'ABACUS_DIR', '/XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/bin')
-        abacus_exe = get('ABACUS', 'ABACUS_EXE', 'abacus')
-        abacus_bin = f"{abacus_dir}/{abacus_exe}"
-        modules_str = get('MODULE', 'MODULES', 'intel/oneapi2023.2_noimpi mpi/mpich/4.1.2-icc-oneapi2023.2-ch4')
+
+        # 集群相关配置全部来自 condor.ini（见 abacus/cluster_config.py），
+        # 不含任何特定集群的路径；缺少必需项时给出明确报错。
+        ccfg = ClusterConfig()
+        abacus_bin = ccfg.abacus_bin
+        py = runtime_python(ccfg)
         
         # 生成脚本头部
         if is_resume:
@@ -225,27 +229,13 @@ class AbacusFlowManager:
                 f"# Run this script from: {job_dir}",
             ]
         
-        # 环境初始化
+        # 环境初始化（只包含 condor.ini 中实际配置的内容）
         script_content.extend([
             "",
             "# ===== 环境初始化 =====",
-            "export OMP_NUM_THREADS=1",
-            "",
-            f"source {conda_path}/etc/profile.d/conda.sh",
-            f"conda activate {conda_env}",
-            "",
-            "# 加载必要的 module",
-            f"# MODULES: {modules_str}",
-            "export MODULESHOME=/usr/share/modules",
-            "export MODULEPATH=/APP/u22/x86/modulepath/Compilers:/APP/u22/x86/modulepath/application",
-            "export MODULES_CMD=/usr/lib/x86_64-linux-gnu/modulecmd.tcl",
-            "ml() { module ml \"$@\"; }",
-            "module() { _module_raw \"$@\" 2>&1; }",
-            "_module_raw() { eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash \"$@\"`; }",
-            "",
-            f"for mod in {modules_str}; do",
-            "  module load $mod",
-            "done",
+        ])
+        script_content.extend(render_env_setup(ccfg, omp_threads=1))
+        script_content.extend([
             "",
             f"cd {job_dir} || exit 1",
             "",
@@ -377,7 +367,10 @@ class AbacusFlowManager:
         cores = stage_config.get('core', 64)
         try_num = stage_config.get('try_num', 2)
         ignore_error = stage_config.get('ignore_error', "False")
-        partition = get('ALLOW', 'PARTITION', 'deimos')
+        ccfg = ClusterConfig()
+        partition = ccfg.partition
+        run_cmd = ccfg.build_run_command(nodes, cores, partition, abacus_bin)
+        py = runtime_python(ccfg)
         
         lines = [
             f"echo '[...]start {stage} task'",
@@ -453,7 +446,7 @@ class AbacusFlowManager:
         lines.extend([
             "",
             f"echo '[...]prepare {stage} inputs.'",
-            f"python {abacus_py} generate --work_dir . --stage {template}",
+            f"{py} {abacus_py} generate --work_dir . --stage {template}",
         ])
         
         if ignore_error == "True":
@@ -483,15 +476,15 @@ class AbacusFlowManager:
             "  ",
             "  # 运行 ABACUS 并实时监控",
             f"  if command -v stdbuf >/dev/null 2>&1 && [ -f {monitor_py} ]; then",
-            f"    stdbuf -oL -eL yhrun -N {nodes} -n {cores} -p {partition} {abacus_bin} 2>&1 | tee running.log | python -u {monitor_py}",
+            f"    stdbuf -oL -eL {run_cmd} 2>&1 | tee running.log | {py} -u {monitor_py}",
             "  else",
-            f"    yhrun -N {nodes} -n {cores} -p {partition} {abacus_bin} > running.log 2>&1",
+            f"    {run_cmd} > running.log 2>&1",
             "  fi",
             "  ",
             "  # 检查计算结果",
             "  echo \"[...]checking iteration $try_num result...\"",
-            f"  python {abacus_py} errors --work_dir .",
-            f"  python {abacus_py} converge --work_dir .",
+            f"  {py} {abacus_py} errors --work_dir .",
+            f"  {py} {abacus_py} converge --work_dir .",
             "  ",
             "  # 如果收敛成功，退出循环",
             "  if [ -f \"converge.txt\" ]; then",
@@ -499,7 +492,7 @@ class AbacusFlowManager:
         ])
         
         if 'spin' in stage.lower() or 'spin' in template.lower():
-            lines.append(f"    python {abacus_py} spin --work_dir .")
+            lines.append(f"    {py} {abacus_py} spin --work_dir .")
         
         lines.extend([
             "    break",
@@ -522,13 +515,13 @@ class AbacusFlowManager:
                 "      fi",
                 "    done",
                 "    ",
-                f"    python {abacus_py} update --work_dir . --try_num $try_num --stage {stage}",
+                f"    {py} {abacus_py} update --work_dir . --try_num $try_num --stage {stage}",
             ])
         else:
             lines.extend([
                 f"  if [ $try_num -lt {try_num-1} ]; then",
                 "    echo '[...]calculation not done, prepare to next loop'",
-                f"    python {abacus_py} update --work_dir . --try_num $try_num --stage {stage}",
+                f"    {py} {abacus_py} update --work_dir . --try_num $try_num --stage {stage}",
             ])
         
         lines.extend([
@@ -552,7 +545,7 @@ class AbacusFlowManager:
         ])
         
         if 'spin' in stage.lower() or 'spin' in template.lower():
-            lines.append(f"    python {abacus_py} spin --work_dir .")
+            lines.append(f"    {py} {abacus_py} spin --work_dir .")
         
         lines.extend([
             f"    echo '{stage} success (ignored)' >> ../stat.log",
@@ -562,7 +555,7 @@ class AbacusFlowManager:
         ])
         
         if 'spin' in stage.lower() or 'spin' in template.lower():
-            lines.append(f"  python {abacus_py} spin --work_dir .")
+            lines.append(f"  {py} {abacus_py} spin --work_dir .")
         
         lines.extend([
             f"  echo '{stage} success' >> ../stat.log",
@@ -585,6 +578,7 @@ class AbacusFlowManager:
     
     def _get_workflow_summary_script(self, abacus_py, job_dir):
         """返回工作流总结部分的脚本"""
+        py = runtime_python(ClusterConfig())
         return [
             "",
             "# ===== 计算总用时和资源消耗 =====",
@@ -618,7 +612,7 @@ class AbacusFlowManager:
             "echo ''",
             "echo '======================================================================'",
             "",
-            f"python {abacus_py} summary --root {job_dir}",
+            f"{py} {abacus_py} summary --root {job_dir}",
             "",
             "echo '[...]ALL STAGES COMPLETED!'",
             "echo 'Workflow completed' >> $stat_log",

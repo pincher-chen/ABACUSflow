@@ -325,7 +325,7 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
     """
     # 检查 ASE 是否可用
     if read is None:
-        raise RuntimeError("ASE not available. Please run in conda environment: conda activate dftflow")
+        raise RuntimeError("ASE not available. Install the Python dependencies (see requirements.txt) in the environment used to run abacusflow.")
     
     # 延迟导入 AbacusInput
     try:
@@ -333,11 +333,19 @@ def generate_input_files(work_dir, stage, stru_file, config_get, incar_template,
     except ImportError:
         raise RuntimeError("AbacusInput not available. Please check abacus/create_input.py")
     
-    # 读取配置
-    POTPATH = config_get('ABACUS', 'PSEUDO_POTENTIAL_DIR', 
-                  '/XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/PotSG15')
-    ORBPATH = config_get('ABACUS', 'ORBITAL_DIR',
-                  '/XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/OrbSG15std')
+    # 读取配置（伪势/轨道目录必须由 condor.ini 或环境变量提供，不再内置集群路径）
+    from abacus.cluster_config import ClusterConfig
+    _ccfg = ClusterConfig()
+    POTPATH = _ccfg.get('ABACUS', 'PSEUDO_POTENTIAL_DIR')
+    ORBPATH = _ccfg.get('ABACUS', 'ORBITAL_DIR')
+    if not POTPATH:
+        raise RuntimeError(
+            "未配置赝势目录：请在 config/condor.ini 设置 [ABACUS] PSEUDO_POTENTIAL_DIR，"
+            "或设置环境变量 ABACUSFLOW_PSEUDO_POTENTIAL_DIR")
+    if not ORBPATH:
+        raise RuntimeError(
+            "未配置轨道基组目录：请在 config/condor.ini 设置 [ABACUS] ORBITAL_DIR，"
+            "或设置环境变量 ABACUSFLOW_ORBITAL_DIR")
     KSPACING = float(config_get('PARAMETERS', 'KSPACING', '0.13'))
     
     # 切换到工作目录

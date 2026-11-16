@@ -50,7 +50,7 @@ def calculate_kpoints_from_cell(cell, kspacing, ktype='Gamma'):
         reciprocal_cell[2] = np.cross(cell[0], cell[1]) / volume
 
     # K 点数公式：N_i = max(1, floor(round(|b_i| / kspacing)))
-    # 与 dftflow (calculation/vasp/inputs/kpoints.py::get_kmesh) 严格一致——
+    # 与参考实现（VASP get_kmesh）的分格公式严格一致——
     # 该实现是 N = floor(round(|b 含 2π| / (2π × mesh)))，等价于这里
     # N = floor(round(|b 无 2π| / mesh))，因为 ASE Cell.reciprocal() 本身不含 2π。
     # 历史 bug: 原代码多除了一个 2π，导致 mesh 缩水 ~2π 倍。

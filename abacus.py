@@ -63,6 +63,13 @@ except ImportError:
 # 辅助函数
 # ============================================================================
 
+
+def _submit_cmd():
+    """当前配置的作业提交命令（默认按调度器推断），用于提示文案。"""
+    from abacus.cluster_config import ClusterConfig
+    return ClusterConfig().submit_cmd
+
+
 def get_atom_count_from_structure(file_path):
     """
     从结构文件中获取原子数（支持多种格式：VASP, CIF, XYZ等）
@@ -196,7 +203,7 @@ def workflow(stru_path, work_dir):
     
     if scripts:
         click.echo(f"[INFO] Generated workflow scripts: {len(scripts)} files")
-        click.echo(f"[INFO] Example: yhbatch {scripts[0]}")
+        click.echo(f"[INFO] Example: {_submit_cmd()} {scripts[0]}")
     else:
         click.echo("[ERROR] No scripts generated")
 
@@ -469,8 +476,10 @@ def spin(work_dir):
     
     content = log_file.read_text()
     
-    mag_pattern = r'total magnetism \(Bohr mag/cell\)\s*=\s*([-+]?[\d.]+(?:[eE][-+]?\d+)?)'
-    mag_matches = re.findall(mag_pattern, content)
+    # ABACUS 日志中该行写作 "Total magnetism (Bohr mag/cell) = ..."（大写 T），
+    # 这里必须忽略大小写，否则永远匹配不到。
+    mag_pattern = r'total\s+magnetism\s+\(Bohr\s+mag/cell\)\s*=\s*([-+]?[\d.]+(?:[eE][-+]?\d+)?)'
+    mag_matches = re.findall(mag_pattern, content, re.IGNORECASE)
     
     if mag_matches:
         final_mag = float(mag_matches[-1])
@@ -761,14 +770,10 @@ def single(stru_path, work_dir, template, kval, node_num, proc_num, auto_resourc
     work_dir = Path(work_dir).absolute()
     work_dir.mkdir(parents=True, exist_ok=True)
     
-    # 获取配置
-    conda_path = get('ENV', 'CONDA_PATH', '/XYFS01/nscc-gz_pinchen_1/sf_install/miniconda3')
-    conda_env = get('ENV', 'CONDA_ENV', 'dftflow')
-    abacus_dir = get('ABACUS', 'ABACUS_DIR', '/XYFS01/nscc-gz_pinchen_1/sf_box/abacus-develop-LTSv3.10.0/bin')
-    abacus_exe = get('ABACUS', 'ABACUS_EXE', 'abacus')
-    abacus_bin = f"{abacus_dir}/{abacus_exe}"
-    modules_str = get('MODULE', 'MODULES', 'intel/oneapi2023.2_noimpi mpi/mpich/4.1.2-icc-oneapi2023.2-ch4')
-    partition = get('ALLOW', 'PARTITION', 'deimos')
+    # 获取配置（全部来自 condor.ini，无集群硬编码）
+    from abacus.cluster_config import ClusterConfig, render_env_setup, runtime_python
+    ccfg = ClusterConfig()
+    abacus_bin = ccfg.abacus_bin
     
     abacus_py = Path(__file__).absolute()
     
@@ -839,10 +844,7 @@ def single(stru_path, work_dir, template, kval, node_num, proc_num, auto_resourc
             omp_threads=omp_threads,
             abacus_py=abacus_py,
             abacus_bin=abacus_bin,
-            conda_path=conda_path,
-            conda_env=conda_env,
-            modules_str=modules_str,
-            partition=partition,
+            ccfg=ccfg,
             stru_file=stru_dest,  # 传入实际的结构文件路径
             spin=spin,
             guess_mag=guess_mag
@@ -869,21 +871,26 @@ def single(stru_path, work_dir, template, kval, node_num, proc_num, auto_resourc
         click.echo(f"\n   # 提交单个作业:")
         example_script = Path(generated_scripts[0]).name
         example_dir = Path(generated_scripts[0]).parent.name
-        click.echo(f"   cd {example_dir} && yhbatch {example_script}")
+        click.echo(f"   cd {example_dir} && {_submit_cmd()} {example_script}")
         click.echo(f"\n   # 批量提交所有作业:")
         click.echo(f"   for dir in */; do")
-        click.echo(f"       (cd \"$dir\" && [ -f *_single.sh ] && yhbatch *_single.sh)")
+        click.echo(f"       (cd \"$dir\" && [ -f *_single.sh ] && {_submit_cmd()} *_single.sh)")
         click.echo(f"   done")
 
 
 def _generate_single_script(job_name, job_dir, template, kval, node_num, proc_num,
-                             omp_threads, abacus_py, abacus_bin, conda_path, 
-                             conda_env, modules_str, partition, stru_file, spin=None, guess_mag=False):
+                             omp_threads, abacus_py, abacus_bin, ccfg,
+                             stru_file, spin=None, guess_mag=False):
     """
     生成单步计算的脚本内容
     """
     from datetime import datetime
-    
+    from abacus.cluster_config import render_env_setup, runtime_python
+
+    py = runtime_python(ccfg)
+    partition = ccfg.partition
+    run_cmd = ccfg.build_run_command(node_num, proc_num, partition, abacus_bin)
+
     # stru_file 已经从外部传入
     
     # 构建 generate 命令的参数（路径用双引号包裹，防止特殊字符如括号引发 bash 语法错误）
@@ -902,23 +909,7 @@ def _generate_single_script(job_name, job_dir, template, kval, node_num, proc_nu
         f"# Resources: {node_num} node(s), {proc_num} processes, OMP={omp_threads}",
         "",
         "# ===== 环境初始化 =====",
-        f"export OMP_NUM_THREADS={omp_threads}",
-        "",
-        f"source {conda_path}/etc/profile.d/conda.sh",
-        f"conda activate {conda_env}",
-        "",
-        "# 加载必要的 module",
-        f"# MODULES: {modules_str}",
-        "export MODULESHOME=/usr/share/modules",
-        "export MODULEPATH=/APP/u22/x86/modulepath/Compilers:/APP/u22/x86/modulepath/application",
-        "export MODULES_CMD=/usr/lib/x86_64-linux-gnu/modulecmd.tcl",
-        "ml() { module ml \"$@\"; }",
-        "module() { _module_raw \"$@\" 2>&1; }",
-        "_module_raw() { eval `/usr/bin/tclsh8.6 /usr/lib/x86_64-linux-gnu/modulecmd.tcl bash \"$@\"`; }",
-        "",
-        f"for mod in {modules_str}; do",
-        "  module load $mod",
-        "done",
+        *render_env_setup(ccfg, omp_threads=omp_threads),
         "",
         f'cd "{job_dir}" || exit 1',
         "",
@@ -933,7 +924,7 @@ def _generate_single_script(job_name, job_dir, template, kval, node_num, proc_nu
         "",
         "# ===== 生成输入文件 =====",
         f"echo '[...]Generating INPUT files with template: {template}'",
-        f"python {abacus_py} generate {generate_args}",
+        f"{py} {abacus_py} generate {generate_args}",
         "GENERATE_EXIT=$?",
         "if [ $GENERATE_EXIT -ne 0 ]; then",
         "    echo '[ERROR] generate failed (exit code '$GENERATE_EXIT'), aborting calculation.'",
@@ -941,17 +932,17 @@ def _generate_single_script(job_name, job_dir, template, kval, node_num, proc_nu
         "    exit $GENERATE_EXIT",
         "fi",
         "",
-        "# KPT 已经由 generate 命令使用 --kval 直接生成（公式已修复，与 dftflow bit-exact）",
+        "# KPT 已经由 generate 命令使用 --kval 直接生成",
         "",
         "# ===== 运行ABACUS计算 =====",
         f"echo '[...]Running ABACUS on {node_num} node(s), {proc_num} processes'",
-        f"yhrun -N {node_num} -n {proc_num} -p {partition} {abacus_bin} > running.log 2>&1",
+        f"{run_cmd} > running.log 2>&1",
         "RUN_EXIT_CODE=$?",
         "",
         "# ===== 检查计算结果 =====",
         "echo '[...]Checking calculation result...'",
-        f'python "{abacus_py}" errors --work_dir "."',
-        f'python "{abacus_py}" converge --work_dir "."',
+        f'{py} "{abacus_py}" errors --work_dir "."',
+        f'{py} "{abacus_py}" converge --work_dir "."',
         "",
         "# 记录结束时间",
         "END_TIME=$(date +%s)",
@@ -1131,7 +1122,7 @@ def resume(work_dir, from_stage, dry_run, no_backup, no_clean):
         click.echo(f"   Script: {script_path}")
         click.echo(f"\n📝 Next steps:")
         click.echo(f"   cd {work_dir}")
-        click.echo(f"   yhbatch {Path(script_path).name}")
+        click.echo(f"   {_submit_cmd()} {Path(script_path).name}")
         
     except Exception as e:
         click.echo(f"[ERROR] Failed to generate resume script: {e}", err=True)
@@ -1598,10 +1589,10 @@ def batch_resume(batch_dir, from_stage, dry_run, no_backup, no_clean, auto_submi
             click.echo(f"\n   # 方式2: 手动提交单个作业")
             if needs_resume:
                 example_job = needs_resume[0]
-                click.echo(f"   cd {example_job} && yhbatch *_resume.sh")
+                click.echo(f"   cd {example_job} && {_submit_cmd()} *_resume.sh")
             click.echo(f"\n   # 方式3: 批量手动提交")
             click.echo(f"   for dir in */; do")
-            click.echo(f"       (cd \"$dir\" && [ -f *_resume.sh ] && yhbatch *_resume.sh)")
+            click.echo(f"       (cd \"$dir\" && [ -f *_resume.sh ] && {_submit_cmd()} *_resume.sh)")
             click.echo(f"   done")
 
 # ============================================================================

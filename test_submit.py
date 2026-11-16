@@ -115,7 +115,7 @@ def test_job_queue():
             job_name=f"test_job_{i}",
             nodes=1,
             cores=16,
-            partition="deimos"
+            partition="normal"
         )
         queue.add_job(job)
     

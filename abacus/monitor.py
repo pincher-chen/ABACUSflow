@@ -73,7 +73,9 @@ def monitor_abacus_output():
             # 在 LCAO block 中解析信息
             if in_lcao_block:
                 # 磁矩
-                mag_match = re.search(r'total magnetism \(Bohr mag/cell\)\s*=\s*([-+]?[\d.eE+-]+)', line)
+                mag_match = re.search(
+                    r'total\s+magnetism\s+\(Bohr\s+mag/cell\)\s*=\s*([-+]?[\d.]+(?:[eE][-+]?\d+)?)',
+                    line, re.IGNORECASE)
                 if mag_match:
                     lcao_magnetism = float(mag_match.group(1))
                 
